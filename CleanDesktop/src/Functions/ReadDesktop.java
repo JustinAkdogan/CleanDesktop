@@ -16,7 +16,14 @@ public class ReadDesktop {
 		File desktopfile = new File(path);
 		String filelist[] = desktopfile.list();
 		int counter = filelist.length;
-		for(int i = 0; i <= counter - 1; i++)
-			new TransferFiles(filelist[i]); 
+		for(int i = 0; i <= counter - 1; i++) {
+			File file = new File ("C:\\Users\\"+username+"\\Desktop\\"+filelist[i]);
+			long size = file.length();
+			if(size >= 1) {
+				new TransferFiles(filelist[i]); 
+			}else {
+				file.delete();
+			}
+		}
 	}
 }
