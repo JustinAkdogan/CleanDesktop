@@ -9,11 +9,14 @@ public class main {
 
 	public static void main(String[] args) {	
 		MainFrame frame=new MainFrame();
-		CreateFolders createfolders = new CreateFolders();
-		ReadDesktop rd = new ReadDesktop();
 	    frame.setTitle("CleanDesktop");
 	    frame.setResizable(false);
 	    frame.setVisible(true);
+	}
+	
+	public void cleanDesktop() {
+		//CreateFolders createfolders = new CreateFolders();
+		//ReadDesktop rd = new ReadDesktop();
 	}
 
 }

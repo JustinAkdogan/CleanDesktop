@@ -6,7 +6,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Paths;
 
 public class CreateFolders {
-
+	
 	public CreateFolders() {
 		String username = System.getProperty("user.name");
 				
@@ -23,7 +23,11 @@ public class CreateFolders {
 		dir3.mkdir();
 		if(!dir4.exists())
 		dir4.mkdir();
-		
 	}
+	
+	public void cleanDesktop() {
+		ReadDesktop rd = new ReadDesktop();
+	}
+	
 }
 
