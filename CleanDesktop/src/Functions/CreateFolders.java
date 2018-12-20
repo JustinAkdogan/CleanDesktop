@@ -9,7 +9,7 @@ public class CreateFolders {
 
 	public CreateFolders() {
 		String username = System.getProperty("user.name");
-		
+				
 		File dir = new File("C:\\Users\\"+username+"\\Documents\\CleanDesktop");
 		File dir2 = new File("C:\\Users\\"+username+"\\Pictures\\CleanDesktop");
 		File dir3 = new File("C:\\Users\\"+username+"\\Music\\CleanDesktop");
