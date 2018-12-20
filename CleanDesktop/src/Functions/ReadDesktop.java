@@ -11,7 +11,6 @@ public class ReadDesktop {
 	
 	public ReadDesktop() {
 		
-		reading();
 	}
 	
 	public void reading() {
@@ -19,8 +18,8 @@ public class ReadDesktop {
 		File desktopfile = new File(path);
 		String filelist[] = desktopfile.list();
 		int counter = filelist.length;
-		for(int i = 0; i <= counter - 1; i++)
-		System.out.println(filelist[i]);
+		for(int i = 0; i <= counter - 1; i++);
+			
 	}
 	
 	
