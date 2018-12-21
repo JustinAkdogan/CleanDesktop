@@ -5,6 +5,7 @@ import java.io.*;
 public class ChangeLog extends MainLog {
 
 	String targetfile;
+	int i = 1;
 	
 	public ChangeLog(String targetfile) {
 		this.targetfile = targetfile + "ChangeLog.txt";
