@@ -1,4 +1,4 @@
-package LogPackage;
+package Logs;
 
 import java.io.File;
 

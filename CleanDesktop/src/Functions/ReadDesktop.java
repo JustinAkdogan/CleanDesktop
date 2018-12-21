@@ -2,8 +2,8 @@ package Functions;
 
 import java.io.File;
 
-import LogPackage.ChangeLog;
-import LogPackage.ErrorLog;
+import Logs.ChangeLog;
+import Logs.ErrorLog;
 
 public class ReadDesktop {
 	

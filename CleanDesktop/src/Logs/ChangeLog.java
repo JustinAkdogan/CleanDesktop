@@ -1,13 +1,13 @@
-package LogPackage;
+package Logs;
 
 import java.io.*;
 
-public class ErrorLog extends MainLog {
+public class ChangeLog extends MainLog {
 
 	String targetfile;
 	
-	public ErrorLog(String targetfile) {
-		this.targetfile = targetfile + "ErrorLog.txt";
+	public ChangeLog(String targetfile) {
+		this.targetfile = targetfile + "ChangeLog.txt";
 	}
 	
 	
