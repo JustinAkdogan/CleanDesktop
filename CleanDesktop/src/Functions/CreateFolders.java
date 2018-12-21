@@ -21,10 +21,9 @@ public class CreateFolders {
 		File dir6 = new File("C:\\CleanDesktop\\Logs");
 		
 		//Files
-		File file = new File("C:\\Users\\"+username+"\\Desktop\\CleanDesktop\\Whitelist.txt");
-		File file2 = new File("C:\\CleanDesktop\\Logs\\Conflicts.txt");
-		File file3 = new File("C:\\CleanDesktop\\Logs\\Changelog.txt");
-		//File file4 = new File("C:\\CleanDesktop\\Whitelist.txt");
+		File file = new File("C:\\CleanDesktop\\Logs\\Conflicts.txt");
+		File file2 = new File("C:\\CleanDesktop\\Logs\\Changelog.txt");
+		//File file3 = new File("C:\\CleanDesktop\\Whitelist.txt");
 		
 		if(!dir.exists())
 		dir.mkdir();
@@ -55,18 +54,10 @@ public class CreateFolders {
 			e.printStackTrace();
 		}
 		}
-		
+		/*
 		if(!file3.exists()) {
 		try {
 			file3.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		}
-		/*
-		if(!file4.exists()) {
-		try {
-			file4.createNewFile();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
