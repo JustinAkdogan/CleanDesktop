@@ -1,11 +1,15 @@
 package Functions;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
@@ -14,6 +18,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FileWhitelist {
 
 	String username = System.getProperty("user.name");
+	LocalDateTime now = LocalDateTime.now();
+	String thisLine = null;
 	
 	public FileWhitelist() {
 		selectFiles();
@@ -36,12 +42,41 @@ public class FileWhitelist {
 	
 	public void saveFilesInWhitelist(File [] files) {
 		try {
-			BufferedWriter writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Whitelist.txt", true));
-			writer.write("d");
+			BufferedWriter writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Whitelist.txt", true));			
+			DateTimeFormatter df;
+			df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");  
+			
+			//Text Writer
+			writer.write(""+now.format(df));
 			writer.newLine();
+			for (int i=0; i < files.length; i++) {
+				checkFilesInWhitelist(""+files[i]);
+				writer.write(""+files[i].getName());
+				writer.newLine();
+			}
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 	}
+	public void checkFilesInWhitelist(String filename) {
+		try {
+			BufferedReader reader = new BufferedReader (new FileReader("C:\\CleanDesktop\\Whitelist.txt"));
+
+			try {
+				while((thisLine = reader.readLine()) != null) {
+			
+					if (thisLine == "46019644.jpg") {
+						System.out.println("XDD");
+					}
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}		
+	}
 }
+
