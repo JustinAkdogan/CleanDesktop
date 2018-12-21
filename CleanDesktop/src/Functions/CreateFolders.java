@@ -8,9 +8,11 @@ import java.nio.file.Paths;
 
 public class CreateFolders {
 	
+	String prepath = "C:\\CleanDesktop\\";
+	
+	
 	public CreateFolders() {
 		String username = System.getProperty("user.name");
-				
 		
 		//Folders
 		File dir = new File("C:\\Users\\"+username+"\\Documents\\CleanDesktop");
@@ -21,9 +23,9 @@ public class CreateFolders {
 		File dir6 = new File("C:\\CleanDesktop\\Logs");
 		
 		//Files
-		File file = new File("C:\\CleanDesktop\\Logs\\Conflicts.txt");
-		File file2 = new File("C:\\CleanDesktop\\Logs\\Changelog.txt");
-		File file3 = new File("C:\\CleanDesktop\\Whitelist.txt");
+		File file = new File(prepath + "Logs\\Conflicts.txt");
+		File file2 = new File(prepath + "Logs\\Changelog.txt");
+		File file3 = new File(prepath + "Whitelist.txt");
 		
 		if(!dir.exists())
 		dir.mkdir();
@@ -66,7 +68,7 @@ public class CreateFolders {
 	}
 	
 	public void cleanDesktop() {
-		ReadDesktop rd = new ReadDesktop();
+		ReadDesktop rd = new ReadDesktop(prepath);
 	}
 	
 }
