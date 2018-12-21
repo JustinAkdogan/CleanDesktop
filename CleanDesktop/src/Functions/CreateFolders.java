@@ -24,7 +24,7 @@ public class CreateFolders {
 		File dir6 = new File("C:\\CleanDesktop\\Logs");
 		
 		//Files
-		File file = new File(prepathlog + "Conflicts.txt");
+//		File file = new File(prepathlog + "Conflicts.txt");
 //		File file2 = new File(prepathlog + "Changelog.txt");
 		File file3 = new File(prepath + "Whitelist.txt");
 		
@@ -42,13 +42,13 @@ public class CreateFolders {
 		dir6.mkdir();
 		
 		//File Creation
-		if(!file.exists()) {
-		try {
-			file.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		}
+//		if(!file.exists()) {
+//		try {
+//			file.createNewFile();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		}
 		
 //		if(!file2.exists()) {
 //		try {

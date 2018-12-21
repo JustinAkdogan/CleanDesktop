@@ -3,18 +3,21 @@ package Functions;
 import java.io.File;
 
 import LogPackage.ChangeLog;
+import LogPackage.ErrorLog;
 
 public class ReadDesktop {
 	
 	String username = System.getProperty("user.name");
 	String desktoppath = "C:\\Users\\" + username + "\\Desktop";
-	String transpath;
+	String path;
 	ChangeLog translog;
+	ErrorLog errorlog;
 	
 	public ReadDesktop(String prepath) {
-		transpath = prepath;
+		path = prepath;
 		//reading();
 		createTransferLog();
+		createErrorLog();
 	}
 	
 	public void reading() {
@@ -34,7 +37,12 @@ public class ReadDesktop {
 	}
 	
 	public void createTransferLog() {
-		translog = new ChangeLog(transpath);
+		translog = new ChangeLog(path);
 		translog.createLogFile();
+	}
+	
+	public void createErrorLog() {
+		errorlog = new ErrorLog(path);
+		errorlog.createLogFile();
 	}
 }
