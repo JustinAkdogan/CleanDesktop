@@ -2,14 +2,14 @@ package Functions;
 
 import java.io.File;
 
-import LogPackage.TransferLog;
+import LogPackage.ChangeLog;
 
 public class ReadDesktop {
 	
 	String username = System.getProperty("user.name");
 	String desktoppath = "C:\\Users\\" + username + "\\Desktop";
 	String transpath;
-	TransferLog translog;
+	ChangeLog translog;
 	
 	public ReadDesktop(String prepath) {
 		transpath = prepath;
@@ -34,7 +34,7 @@ public class ReadDesktop {
 	}
 	
 	public void createTransferLog() {
-		translog = new TransferLog(transpath);
+		translog = new ChangeLog(transpath);
 		translog.createLogFile();
 	}
 }

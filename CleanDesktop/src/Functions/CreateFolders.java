@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 public class CreateFolders {
 	
 	String prepath = "C:\\CleanDesktop\\";
+	String prepathlog = "C:\\CleanDesktop\\Logs\\";
 	
 	
 	public CreateFolders() {
@@ -23,8 +24,8 @@ public class CreateFolders {
 		File dir6 = new File("C:\\CleanDesktop\\Logs");
 		
 		//Files
-		File file = new File(prepath + "Logs\\Conflicts.txt");
-		File file2 = new File(prepath + "Logs\\Changelog.txt");
+		File file = new File(prepathlog + "Conflicts.txt");
+		File file2 = new File(prepathlog + "Changelog.txt");
 		File file3 = new File(prepath + "Whitelist.txt");
 		
 		if(!dir.exists())
@@ -68,7 +69,7 @@ public class CreateFolders {
 	}
 	
 	public void cleanDesktop() {
-		ReadDesktop rd = new ReadDesktop(prepath);
+		ReadDesktop rd = new ReadDesktop(prepathlog);
 	}
 	
 }

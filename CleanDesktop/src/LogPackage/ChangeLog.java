@@ -2,11 +2,11 @@ package LogPackage;
 
 import java.io.*;
 
-public class TransferLog extends MainLog {
+public class ChangeLog extends MainLog {
 
 	String targetfile;
 	
-	public TransferLog(String targetfile) {
+	public ChangeLog(String targetfile) {
 		this.targetfile = targetfile + "TransferLog.txt";
 	}
 	
