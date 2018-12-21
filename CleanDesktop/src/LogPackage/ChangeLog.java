@@ -7,7 +7,7 @@ public class ChangeLog extends MainLog {
 	String targetfile;
 	
 	public ChangeLog(String targetfile) {
-		this.targetfile = targetfile + "TransferLog.txt";
+		this.targetfile = targetfile + "ChangeLog.txt";
 	}
 	
 	
