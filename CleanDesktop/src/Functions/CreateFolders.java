@@ -25,7 +25,7 @@ public class CreateFolders {
 		
 		//Files
 		File file = new File(prepathlog + "Conflicts.txt");
-		File file2 = new File(prepathlog + "Changelog.txt");
+//		File file2 = new File(prepathlog + "Changelog.txt");
 		File file3 = new File(prepath + "Whitelist.txt");
 		
 		if(!dir.exists())
@@ -50,13 +50,13 @@ public class CreateFolders {
 		}
 		}
 		
-		if(!file2.exists()) {
-		try {
-			file2.createNewFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		}
+//		if(!file2.exists()) {
+//		try {
+//			file2.createNewFile();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		}
 		
 		if(!file3.exists()) {
 		try {
