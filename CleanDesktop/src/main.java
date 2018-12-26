@@ -1,6 +1,6 @@
 import javax.swing.JButton;
 
-import Functions.CreateFolders;
+import Functions.CreateWorkspace;
 import Functions.TransferFiles;
 import Functions.ReadDesktop;
 import GUI.MainFrame;
@@ -13,10 +13,4 @@ public class main {
 	    frame.setResizable(false);
 	    frame.setVisible(true);
 	}
-	
-	public void cleanDesktop() {
-		//CreateFolders createfolders = new CreateFolders();
-		//ReadDesktop rd = new ReadDesktop();
-	}
-
 }

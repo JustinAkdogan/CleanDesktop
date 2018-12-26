@@ -66,9 +66,9 @@ public class FileWhitelist {
 			try {
 				while((thisLine = reader.readLine()) != null) {
 			
-					if (thisLine == "46019644.jpg") {
-						System.out.println("XDD");
-					}
+					//if (thisLine == "46019644.jpg") { #TODO 
+						//System.out.println("XDD");
+					//}
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

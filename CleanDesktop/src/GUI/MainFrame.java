@@ -11,12 +11,12 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import Functions.CreateFolders;
+import Functions.CreateWorkspace;
 import Functions.FileWhitelist;
 
 public class MainFrame extends JFrame {
 	JButton startBtn, whiteBtn;
-	CreateFolders cf = new CreateFolders();
+	CreateWorkspace cw = new CreateWorkspace();
 	
 	
 	
@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				cf.cleanDesktop();
+				cw.cleanDesktop();
 			}
 		});
 		

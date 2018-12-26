@@ -1,18 +1,20 @@
 package Functions;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Paths;
 
-public class CreateFolders {
+public class CreateWorkspace {
 	
 	String prepath = "C:\\CleanDesktop\\";
 	String prepathlog = "C:\\CleanDesktop\\Logs\\";
 	
 	
-	public CreateFolders() {
+	public CreateWorkspace() {
 		String username = System.getProperty("user.name");
 		
 		//Folders
@@ -24,8 +26,8 @@ public class CreateFolders {
 		File dir6 = new File("C:\\CleanDesktop\\Logs");
 		
 		//Files
-//		File file = new File(prepathlog + "Conflicts.txt");
-//		File file2 = new File(prepathlog + "Changelog.txt");
+		File file = new File(prepathlog + "Errorlog.txt");
+		File file2 = new File(prepathlog + "Changelog.txt");
 		File file3 = new File(prepath + "Whitelist.txt");
 		
 		if(!dir.exists())
@@ -42,21 +44,22 @@ public class CreateFolders {
 		dir6.mkdir();
 		
 		//File Creation
-//		if(!file.exists()) {
-//		try {
-//			file.createNewFile();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		}
+		if(!file.exists()) {
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
 		
-//		if(!file2.exists()) {
-//		try {
-//			file2.createNewFile();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		}
+		if(!file2.exists()) {
+		try {
+			file2.createNewFile();
+			prepareTxt();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
 		
 		if(!file3.exists()) {
 		try {
@@ -66,6 +69,21 @@ public class CreateFolders {
 		}
 		}
 		
+	}
+	
+	public void prepareTxt() {
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Logs\\Changelog.txt", true));
+			writer.write("Date	   Time  File		  Note		Path");
+			writer.newLine();
+			writer.write("##########################################################################");
+			writer.newLine();
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void cleanDesktop() {
