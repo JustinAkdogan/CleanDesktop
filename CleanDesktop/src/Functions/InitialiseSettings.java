@@ -3,7 +3,6 @@ package Functions;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 
 public class InitialiseSettings {
 	private String username = System.getProperty("user.name");

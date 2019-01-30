@@ -19,6 +19,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import com.sun.glass.events.WindowEvent;
 
+import Functions.ChangeSettings;
 import Functions.CreateWorkspace;
 import Functions.FileWhitelist;
 
@@ -71,6 +72,5 @@ public class MainFrame extends JFrame {
 			}
 		});
 	}
-
 }
 

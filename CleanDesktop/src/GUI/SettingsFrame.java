@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import Functions.ChangeSettings;
+
 public class SettingsFrame extends JFrame {
 	JTextField img_destination;
 	JButton select_img_destination;
@@ -13,6 +15,9 @@ public class SettingsFrame extends JFrame {
 	public SettingsFrame() {
 	setSize(600, 400);
 	setLayout(null);
+	
+	ChangeSettings changeSettings = new ChangeSettings();
+	changeSettings.changeSettings();
 	
 	//Elements
 	img_destination = new JTextField("C:/Users/"+username+"/Pictures/CleanDesktop");

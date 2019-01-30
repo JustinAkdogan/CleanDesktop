@@ -77,6 +77,8 @@ public class CreateWorkspace {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		}else if (file4.length() < 1) {
+			InitialiseSettings initSettings = new InitialiseSettings();
 		}
 		
 	}
