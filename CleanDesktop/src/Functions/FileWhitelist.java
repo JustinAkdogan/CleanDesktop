@@ -21,9 +21,9 @@ public class FileWhitelist {
 	LocalDateTime now = LocalDateTime.now();
 	String thisLine = null;
 	
-	public FileWhitelist() {
-		selectFiles();
-	}
+	//public FileWhitelist() {
+		//selectFiles();
+	//}
 	
 	public void selectFiles() {
 	    JFileChooser chooser = new JFileChooser();
@@ -59,16 +59,16 @@ public class FileWhitelist {
 			e.printStackTrace();
 		}		
 	}
-	public void checkFilesInWhitelist(String filename) {
+	public boolean checkFilesInWhitelist(String filename) {
 		try {
 			BufferedReader reader = new BufferedReader (new FileReader("C:\\CleanDesktop\\Whitelist.txt"));
 
 			try {
 				while((thisLine = reader.readLine()) != null) {
 			
-					//if (thisLine == "46019644.jpg") { #TODO 
-						//System.out.println("XDD");
-					//}
+					if (thisLine.contains(filename)) {
+						return true;
+					}
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -76,7 +76,8 @@ public class FileWhitelist {
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}		
+		}
+		return false;
 	}
 }
 

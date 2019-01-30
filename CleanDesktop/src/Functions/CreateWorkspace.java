@@ -29,6 +29,7 @@ public class CreateWorkspace {
 		File file = new File(prepathlog + "Errorlog.txt");
 		File file2 = new File(prepathlog + "Changelog.txt");
 		File file3 = new File(prepath + "Whitelist.txt");
+		File file4 = new File(prepath + "Settings.ini");
 		
 		if(!dir.exists())
 		dir.mkdir();
@@ -64,6 +65,15 @@ public class CreateWorkspace {
 		if(!file3.exists()) {
 		try {
 			file3.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		}
+		
+		if(!file4.exists()) {
+		try {
+			file4.createNewFile();
+			InitialiseSettings initSettings = new InitialiseSettings();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
