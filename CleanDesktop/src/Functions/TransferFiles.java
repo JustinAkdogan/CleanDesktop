@@ -17,19 +17,19 @@ public class TransferFiles {
 			File oldFile = new File ("C:\\Users\\"+username+"\\Desktop\\"+filename);
 			
 			if(!flw.checkFilesInWhitelist(filename)) {
-			if(selectCategory(filename) == 1) {
-				oldFile.renameTo(new File(getDestination(1)+"/"+oldFile.getName()));
-				new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(1));
-			}else if(selectCategory(filename) == 2) {
-				oldFile.renameTo(new File(getDestination(2)+"/"+oldFile.getName()));
-				new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(2));
-			}else if(selectCategory(filename) == 3) {
-				oldFile.renameTo(new File(getDestination(3)+"/"+oldFile.getName()));
-				new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(3));
-			}else if(selectCategory(filename) == 4) {
-				oldFile.renameTo(new File(getDestination(4)+"/"+oldFile.getName()));
-				new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(4));
-			}
+				if(selectCategory(filename) == 1) {
+					oldFile.renameTo(new File(getDestination(1)+"/"+oldFile.getName()));
+					new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(1));
+				}else if(selectCategory(filename) == 2) {
+					oldFile.renameTo(new File(getDestination(2)+"/"+oldFile.getName()));
+					new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(2));
+				}else if(selectCategory(filename) == 3) {
+					oldFile.renameTo(new File(getDestination(3)+"/"+oldFile.getName()));
+					new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(3));
+				}else if(selectCategory(filename) == 4) {
+					oldFile.renameTo(new File(getDestination(4)+"/"+oldFile.getName()));
+					new WriteInLogs(true, oldFile.getName(), " TRANSFERED TO ", getDestination(4));
+				}
 			}
 	}
 	

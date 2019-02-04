@@ -68,9 +68,11 @@ public class MainFrame extends JFrame {
 				settings.setTitle("Settings");
 				settings.setResizable(false);
 				settings.setVisible(true);
-				setVisible(false);
+				//setVisible(false);
+				//dipose();
 			}
 		});
 	}
+
 }
 

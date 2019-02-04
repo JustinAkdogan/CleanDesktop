@@ -2,35 +2,54 @@ package Functions;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class ChangeSettings {
-	
-	
-	public void changeSettings() {
-	        BufferedWriter out;
-	        BufferedReader br;
-			try {
-				//#TODO
-				//Cant Write and Read at the same time 
-				//So create a new file and delete the old file
-				out = new BufferedWriter(new FileWriter("C:\\CleanDesktop\\Settings.ini",true));
-				br = new BufferedReader(new FileReader("C:\\CleanDesktop\\Settings.ini"));
-				String line;
-		        while ((line = br.readLine()) != null) {
-		        	if(line.contains("Test")) {
-		        		line = line.replaceAll("Test","tt");
-		        		out.write(line = line.replaceAll("Test","tt"));
-		           }
-		        }
-	               out.close();
-	               br.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    BufferedWriter out;
+    BufferedReader br;
+    String fileContent [] = new String [10]; //<- Change
+    int li;
+    
+	public void changeSettings(String path, int lineNo) {
+		readAndSaveSettings();
+		writeInSettings(path, lineNo);
 	}
+	
+	public void generateStringArray() {
+		//Generate Here
+	}
+	
+	public void readAndSaveSettings() {
+		int li = 0;
+		try {
+			br = new BufferedReader(new FileReader("C:\\CleanDesktop\\Settings.ini"));
+			String line;
+			
+	        while ((line = br.readLine()) != null) {
+	        	fileContent[li] = line; 
+	        	li++;
+	           }
+	        br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void writeInSettings(String path, int lineNo) {
+		String settingString = fileContent[lineNo]; 
+		fileContent[lineNo] = settingString = settingString.substring(0, settingString.indexOf("=")+1)+path;
+		try {
+			out = new BufferedWriter(new FileWriter("C:\\CleanDesktop\\Settings.ini"));
+			for(int i=0; i < fileContent.length; i++) {
+				out.write(fileContent[i]);
+				out.newLine();
+			}
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

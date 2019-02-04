@@ -27,9 +27,9 @@ public class FileWhitelist {
 	
 	public void selectFiles() {
 	    JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+        //FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
         File dir = new File("C:\\Users\\"+username+"\\Desktop");
-        chooser.setFileFilter(filter);
+        //chooser.setFileFilter(filter);
         chooser.setMultiSelectionEnabled(true);
         chooser.setCurrentDirectory(dir);
         int returnVal = chooser.showOpenDialog(null);
