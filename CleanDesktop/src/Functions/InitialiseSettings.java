@@ -19,7 +19,7 @@ public class InitialiseSettings {
 	public void setStandardSettings() {
 		BufferedWriter writer;
 		try {
-			writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Settings.ini", true));
+			writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Settings.ini", false));
 			for (int i=0; i < settingStructure.length; i++) {
 				writer.write(settingStructure[i]);
 				writer.newLine();

@@ -19,7 +19,7 @@ public class FileWhitelist {
 
 	String username = System.getProperty("user.name");
 	LocalDateTime now = LocalDateTime.now();
-	String thisLine = null;
+	static String thisLine = null;
 	
 	//public FileWhitelist() {
 		//selectFiles();
@@ -59,7 +59,13 @@ public class FileWhitelist {
 			e.printStackTrace();
 		}		
 	}
-	public boolean checkFilesInWhitelist(String filename) {
+	
+	public void removeFileFromWhitelist(String filename) {
+		
+	}
+	
+	
+	public static boolean checkFilesInWhitelist(String filename) {
 		try {
 			BufferedReader reader = new BufferedReader (new FileReader("C:\\CleanDesktop\\Whitelist.txt"));
 
