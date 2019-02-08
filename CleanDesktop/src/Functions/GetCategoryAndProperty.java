@@ -28,15 +28,33 @@ public class GetCategoryAndProperty {
 		return 0;
 	}
 	
-	public String getProperty(String property) {
+	public String getSetup(String Settingline) {
 		
         BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader("C:\\CleanDesktop\\Settings.ini"));
 			String line;
 	        while ((line = br.readLine()) != null) {
-	        	if(line.contains(property)) {
+	        	if(line.contains(Settingline)) {
 	        		return line.substring(line.indexOf("=")+1, line.length());
+	           }
+	        }
+               br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String getProperty(String Settingline) {
+		
+        BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("C:\\CleanDesktop\\Settings.ini"));
+			String line;
+	        while ((line = br.readLine()) != null) {
+	        	if(line.contains(Settingline)) {
+	        		return line.substring(0, line.indexOf("=")+0);
 	           }
 	        }
                br.close();

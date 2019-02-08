@@ -38,18 +38,30 @@ public class ChangeSettings {
 	}
 	
 	public void writeInSettings(String path, int lineNo) {
+		
 		String settingString = fileContent[lineNo]; 
+		if (path.contains("null")) {
+			path = getStandardPath (settingString);
+		}
+
 		fileContent[lineNo] = settingString = settingString.substring(0, settingString.indexOf("=")+1)+path;
 		try {
 			out = new BufferedWriter(new FileWriter("C:\\CleanDesktop\\Settings.ini"));
 			for(int i=0; i < fileContent.length; i++) {
-				out.write(fileContent[i]);
-				out.newLine();
+					out.write(fileContent[i]);
+					out.newLine();
+				
 			}
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getStandardPath(String settingString){
+		GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+		InitialiseSettings initsettings = new InitialiseSettings();
+		return initsettings.getStandardSetting(gcap.getProperty(settingString));
 	}
 	
 }

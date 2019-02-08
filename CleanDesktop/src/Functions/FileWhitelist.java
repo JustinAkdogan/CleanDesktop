@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import javax.swing.JFileChooser;
+import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileWhitelist {
@@ -21,22 +22,20 @@ public class FileWhitelist {
 	LocalDateTime now = LocalDateTime.now();
 	static String thisLine = null;
 	
-	//public FileWhitelist() {
-		//selectFiles();
-	//}
-	
-	public void selectFiles() {
-	    JFileChooser chooser = new JFileChooser();
-        //FileNameExtensionFilter filter = new FileNameExtensionFilter("JPG & GIF Images", "jpg", "gif");
+	public void selectFiles(boolean deleteFiles) {
+		JFileChooser chooser = new JFileChooser();
         File dir = new File("C:\\Users\\"+username+"\\Desktop");
-        //chooser.setFileFilter(filter);
         chooser.setMultiSelectionEnabled(true);
         chooser.setCurrentDirectory(dir);
         int returnVal = chooser.showOpenDialog(null);
             		
         if(returnVal == JFileChooser.APPROVE_OPTION) {
         	File[] files =  chooser.getSelectedFiles();
+        	if(!deleteFiles) {
 				saveFilesInWhitelist(files);
+        	}else {
+        		readAndSaveWhitelist(files);
+        	}
         }
 	}
 	
@@ -59,11 +58,7 @@ public class FileWhitelist {
 			e.printStackTrace();
 		}		
 	}
-	
-	public void removeFileFromWhitelist(String filename) {
 		
-	}
-	
 	
 	public static boolean checkFilesInWhitelist(String filename) {
 		try {
@@ -85,5 +80,43 @@ public class FileWhitelist {
 		}
 		return false;
 	}
+	
+	
+	public void readAndSaveWhitelist(File [] files) {
+		String [] WLContent = new String[500];
+		int counter = 0;
+		try {
+			BufferedReader reader = new BufferedReader (new FileReader("C:\\CleanDesktop\\Whitelist.txt"));
+			
+				try {
+					while((thisLine = reader.readLine()) != null) {
+						WLContent[counter] = thisLine;
+						counter++;
+					}
+					deleteFilesFromWhitelist(files,WLContent);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+	}
+	}
+	
+	public void deleteFilesFromWhitelist(File [] files, String [] WLContent) {
+		int counter = 0;
+		for (int a=0; a < WLContent.length; a++) {
+			if (counter < files.length) {
+				if (checkFilesInWhitelist(files[counter].getName())) {
+					WLContent[a] = "";
+				}
+			counter++;
+			}
+		}
+		//saveFilesInWhitelist(null,WLContent);
+	}
+	
+	
+	
 }
 

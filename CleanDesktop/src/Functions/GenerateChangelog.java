@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class GenerateHtmlLog {
+public class GenerateChangelog {
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
 	
-	public GenerateHtmlLog(String [] htmlLogStructureMid) {
+	public GenerateChangelog(String [] htmlLogStructureMid) {
 		
 		String [] htmlLogStructureStart = {
 				"<!DOCTYPE html>",
@@ -49,13 +49,13 @@ public class GenerateHtmlLog {
 				writer.newLine();
 			}
 			for (int b=0; b < htmlLogStructureMid.length; b++) {
+				System.out.println(htmlLogStructureMid[b]);
 				if (htmlLogStructureMid[b] != null) {
 					String path = null;
-					
-					if(gcap.selectCategory(htmlLogStructureMid[b]) == 1) {path = gcap.getProperty("img_destination");}
-					if(gcap.selectCategory(htmlLogStructureMid[b]) == 2) {path = gcap.getProperty("msc_destination");}
-					if(gcap.selectCategory(htmlLogStructureMid[b]) == 3) {path = gcap.getProperty("vid_destination");}
-					if(gcap.selectCategory(htmlLogStructureMid[b]) == 4) {path = gcap.getProperty("doc_destination");}
+					if(gcap.selectCategory(htmlLogStructureMid[b]) == 1) {path = gcap.getSetup("img_destination");}
+					if(gcap.selectCategory(htmlLogStructureMid[b]) == 2) {path = gcap.getSetup("msc_destination");}
+					if(gcap.selectCategory(htmlLogStructureMid[b]) == 3) {path = gcap.getSetup("vid_destination");}
+					if(gcap.selectCategory(htmlLogStructureMid[b]) == 4) {path = gcap.getSetup("doc_destination");}
 					if (htmlLogStructureMid[b].startsWith("del_")) {
 						writer.write("<a style='padding-left: 15%; color: orangered'>"+htmlLogStructureMid[b].substring(4, htmlLogStructureMid[b].length())+"</a><a style='color:red'> DELETED</a><br>");
 					}else {

@@ -12,9 +12,6 @@ public class InitialiseSettings {
 	"vid_destination="+prepath+"/Videos/CleanDesktop","doc_destination="+prepath+"/Documents/CleanDesktop",
 	"[Delete Files]","del_emptyFiles=true","del_customFiles=false","del_customFilesRange=22","del_customFilesSize=kb"};
 	
-	public InitialiseSettings() {
-		setStandardSettings();
-	}
 	
 	public void setStandardSettings() {
 		BufferedWriter writer;
@@ -28,5 +25,15 @@ public class InitialiseSettings {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String getStandardSetting(String property) {
+		for (int i=0; i < settingStructure.length; i++) {
+			if (settingStructure[i].contains(property)) {
+				String standardSetup = settingStructure[i].substring(settingStructure[i].indexOf("=")+1, settingStructure[i].length());
+				return standardSetup;
+			}
+		}
+		return null;
 	}
 }

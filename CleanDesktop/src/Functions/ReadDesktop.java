@@ -12,7 +12,9 @@ public class ReadDesktop {
 	String username = System.getProperty("user.name");
 	String desktoppath = "C:\\Users\\" + username + "\\Desktop";
 	String path;
+	int allowedDeleteSize = 22;
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	TransferFolders transFolders = new TransferFolders();
 	
 	public ReadDesktop(String prepath) {
 		path = prepath;
@@ -28,27 +30,42 @@ public class ReadDesktop {
 		for(int i = 0; i <= counter - 1; i++) {			
 			File file = new File (desktoppath + "\\" + filelist[i]);
 			long size = file.length(); //Funktioniert nicht überall
+			//int size = (int) file.length();
+			getDeleteSize();
 			
 			if (!FileWhitelist.checkFilesInWhitelist(file.getName()) && file.getName().contains(".")) {
-				if (Boolean.parseBoolean(gcap.getProperty("del_customFiles")) == true) {
-					if (Integer.parseInt(gcap.getProperty("del_customFilesRange")) > size) {
-						new TransferFiles(filelist[i]); 
-						//System.out.println("JA" + file.getName());
+				if (Boolean.parseBoolean(gcap.getSetup("del_customFiles")) == true) {
+					if (size > allowedDeleteSize) {
+						transferedFiles[i] = file.getName();
+						//new TransferFiles(filelist[i]); 
+						transFolders.TransferFiles(filelist[i]);
 					}else {
-					file.delete();					//System.out.println("Nein" + file.getName());
+					transferedFiles[i] = "del_"+file.getName();
+					file.delete();	
 					}
 				}else if (size > 1) {
+					//transferedFiles[i] = file.getName();
 					new TransferFiles(filelist[i]); 
-					transferedFiles[i] = file.getName();
+					transFolders.TransferFiles(filelist[i]);
 					
 				}else {
-					file.delete();
 					transferedFiles[i] = "del_"+file.getName();
+					file.delete();
 				}
 			}
+		
 		}
-		new GenerateHtmlLog(transferedFiles);
+		new GenerateChangelog(transferedFiles);
 	}
 	
+	public void getDeleteSize() {
+		if (gcap.getSetup("del_customFilesSize").contains("kb")) {
+			allowedDeleteSize = Integer.parseInt(gcap.getSetup("del_customFilesRange"))*1000;
+		}else if (gcap.getSetup("del_customFilesSize").contains("mb")) {
+			allowedDeleteSize = Integer.parseInt(gcap.getSetup("del_customFilesRange"))*1000000;
+		}else if (gcap.getSetup("del_customFilesSize").contains("gb")) {
+			allowedDeleteSize = Integer.parseInt(gcap.getSetup("del_customFilesRange"))*1000000000;
+		}
+	}
 
 }

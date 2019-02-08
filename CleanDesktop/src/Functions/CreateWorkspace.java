@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 
 public class CreateWorkspace {
 	
+	InitialiseSettings initSettings = new InitialiseSettings();
+	
 	String prepath = "C:\\CleanDesktop\\";
 	String prepathlog = "C:\\CleanDesktop\\Logs\\";
 	
@@ -32,17 +34,17 @@ public class CreateWorkspace {
 		File file4 = new File(prepath + "Settings.ini");
 		
 		if(!dir.exists())
-		dir.mkdir();
+			dir.mkdir();
 		if(!dir2.exists())
-		dir2.mkdir();
+			dir2.mkdir();
 		if(!dir3.exists())
-		dir3.mkdir();
+			dir3.mkdir();
 		if(!dir4.exists())
-		dir4.mkdir();
+			dir4.mkdir();
 		if(!dir5.exists())
-		dir5.mkdir();
+			dir5.mkdir();
 		if(!dir6.exists())
-		dir6.mkdir();
+			dir6.mkdir();
 		
 		//File Creation
 		if(!file.exists()) {
@@ -73,12 +75,12 @@ public class CreateWorkspace {
 		if(!file4.exists()) {
 		try {
 			file4.createNewFile();
-			InitialiseSettings initSettings = new InitialiseSettings();
+			initSettings.setStandardSettings();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		}else if (file4.length() < 1) {
-			InitialiseSettings initSettings = new InitialiseSettings();
+			initSettings.setStandardSettings();
 		}
 		
 	}

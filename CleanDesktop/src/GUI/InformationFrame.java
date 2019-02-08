@@ -3,7 +3,6 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,17 +16,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
-import com.sun.javafx.scene.paint.GradientUtils.Point;
+public class InformationFrame extends JFrame {
 
-import Functions.CreateWorkspace;
-import Functions.FileWhitelist;
-
-public class MainFrame extends JFrame {
-	JButton startBtn, whiteBtn, settingsBtn, closeBtn, minimizeBtn, infoBtn;
+	JButton closeBtn, minimizeBtn;
 	JLabel title,border;
-	CreateWorkspace cw = new CreateWorkspace();
 	JPanel jp = new JPanel();
 	int width = 600;
 	int height = 400;
@@ -35,25 +28,19 @@ public class MainFrame extends JFrame {
 	
 	
 	
-	public MainFrame() {
+	public InformationFrame() {
 		try{    
-		       setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
+		      setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
 		   }
 		catch (Exception ex){
+			
 		   }
 		
 		//Layout
 		setSize(width, height);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
-		
-		startBtn = new JButton("Clean Desktop");
-		startBtn.setBounds((width-200)/2, 300, 200, 56);
-		startBtn.setBorderPainted(false);
-		startBtn.setBorder(null);
-		startBtn.setContentAreaFilled(false);
-		startBtn.setIcon(new ImageIcon("res/clean.png"));
-		
+				
 		closeBtn = new JButton();
 		closeBtn.setBounds(568, 0, 32, 32);
 		closeBtn.setBorderPainted(false);
@@ -67,24 +54,8 @@ public class MainFrame extends JFrame {
 		minimizeBtn.setBorder(null);
 		minimizeBtn.setContentAreaFilled(false);
 		minimizeBtn.setIcon(new ImageIcon("res/minimize_operation.png"));
-		
-		settingsBtn = new JButton();
-		settingsBtn.setBounds(2,2,32,32);
-		settingsBtn.setIcon(new ImageIcon("res/settings.png"));
-		settingsBtn.setBackground(new java.awt.Color(224, 74, 74,0));
-		settingsBtn.setBorderPainted(false);
-		settingsBtn.setBorder(null);
-		settingsBtn.setContentAreaFilled(false);
-		
-		infoBtn = new JButton();
-		infoBtn.setBounds(42,2,32,32);
-		infoBtn.setIcon(new ImageIcon("res/information.png"));
-		infoBtn.setBackground(new java.awt.Color(224, 74, 74,0));
-		infoBtn.setBorderPainted(false);
-		infoBtn.setBorder(null);
-		infoBtn.setContentAreaFilled(false);
-		
-		title = new JLabel("CleanDesktop");
+				
+		title = new JLabel("About Us");
 		title.setBounds((width-126)/2,0,126,32);
 		title.setFont(new Font("Calibri",Font.PLAIN,22));
 		title.setForeground(Color.WHITE);
@@ -96,50 +67,16 @@ public class MainFrame extends JFrame {
 		border.setForeground(Color.WHITE);
 		
 		//Adding Elements
-		add(startBtn);
-		add(settingsBtn);
 		add(closeBtn);
-		add(infoBtn);
 		add(minimizeBtn);
 		add(title);
 		add(border);
 		add(jp);
 		validate();
 		
-		//getContentPane().setBackground(new java.awt.Color(128, 230, 242));	
-		jp.setBackground(new java.awt.Color(224, 74, 74));	
-		
-		startBtn.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				cw.cleanDesktop();
-			}
-		});
-		
-		startBtn.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	startBtn.setIcon(new ImageIcon("res/clean_hover.png"));
-		    }
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	startBtn.setIcon(new ImageIcon("res/clean.png"));
-		    }
-		});
-		
-		settingsBtn.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				SettingsFrame settings= new SettingsFrame();
-				settings.setTitle("Settings");
-				settings.setResizable(false);
-				settings.setVisible(true);
-				//setVisible(false);
-				//dipose();
-			}
-		});
-		
+		jp.setBackground(new java.awt.Color(224, 74, 74));	
+				
 		closeBtn.addActionListener(new ActionListener()
 		{
 			@Override
@@ -153,15 +90,6 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				setState(Frame.ICONIFIED);
-			}
-		});
-		
-		
-		infoBtn.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				InformationFrame infoFrame = new InformationFrame();
 			}
 		});
 		

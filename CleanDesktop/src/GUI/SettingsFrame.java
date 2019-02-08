@@ -1,5 +1,7 @@
 package GUI;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,23 +10,20 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JRootPane;
 import javax.swing.JTextField;
-
-
+import javax.swing.UIManager;
 
 import Functions.ChangeSettings;
 import Functions.ChooseDestinationFolder;
@@ -35,16 +34,21 @@ public class SettingsFrame extends JFrame {
 	JTextField img_destination, msc_destination, vid_destination, doc_destination, delete_size_range;
 	JButton select_img_destination, select_msc_destination, select_vid_destination, select_doc_destination,
 	getStandardSettings,addFileToWL,removeFileFromWL,showWL,closeBtn,minimizeBtn;
-	JLabel description1,description2,description3;
+	JLabel description1,description2,description3,title,border;
 	JRadioButton deleteEmptyFiles,customDeleteFiles,kb,mb,gb;
 	String username = System.getProperty("user.name");
 	BufferedReader br;
 	JPanel jp = new JPanel();
+	int width = 600;
+	int height = 400;
 	private java.awt.Point initialClick;
+	
+	
+	
 	
 	int lineCounter = 0;
 	public SettingsFrame() {
-	setSize(600, 400);
+	setSize(width, height);
 	setLayout(null);
 	setUndecorated(true);
 	setLocationRelativeTo(null);
@@ -52,92 +56,107 @@ public class SettingsFrame extends JFrame {
 	ChangeSettings changeSettings = new ChangeSettings();
 		
 	//Elements
+	title = new JLabel ("Settings");
+	title.setBounds((width-75)/2, 0, 75, 32);
+	title.setFont(new Font("Calibri",Font.PLAIN,22));
+	title.setForeground(Color.WHITE);
+	
+	border = new JLabel("_____________________________________________________________________________________________________________________________");
+	border.setBounds(0,12,width+100,32);
+	border.setHorizontalAlignment(JLabel.CENTER);
+	border.setFont(new Font("Calibri",Font.PLAIN,22));
+	border.setForeground(Color.WHITE);
+	
 	description1 = new JLabel ("Destination Paths");
-	description1.setBounds(20, 5, 100, 25);
+	description1.setBounds(20, 45, 100, 25);
 	
 	img_destination = new JTextField("C:/Users/"+username+"/Pictures/CleanDesktop");
-	img_destination.setBounds(20, 30, 500, 25);
+	img_destination.setBounds(20, 70, 500, 25);
 	img_destination.setEditable(false);
 	
 	select_img_destination = new JButton();
-	select_img_destination.setBounds(520, 30, 30, 25);
+	select_img_destination.setBounds(520, 70, 30, 25);
 	select_img_destination.setBackground(new java.awt.Color(224, 74, 74,0));
 	select_img_destination.setBorderPainted(false);
 	select_img_destination.setBorder(null);
 	select_img_destination.setContentAreaFilled(false);
-	select_img_destination.setIcon(new ImageIcon("res/select_file.png"));
+	select_img_destination.setIcon(new ImageIcon("res/selectFolder.png"));
 	
 	msc_destination = new JTextField("C:/Users/"+username+"/Pictures/CleanDesktop");
-	msc_destination.setBounds(20, 70, 500, 25);
+	msc_destination.setBounds(20, 110, 500, 25);
 	msc_destination.setEditable(false);
 	
 	select_msc_destination = new JButton();
-	select_msc_destination.setBounds(520, 70, 30, 25);
+	select_msc_destination.setBounds(520, 110, 30, 25);
 	select_msc_destination.setBackground(new java.awt.Color(224, 74, 74,0));
 	select_msc_destination.setBorderPainted(false);
 	select_msc_destination.setBorder(null);
 	select_msc_destination.setContentAreaFilled(false);
-	select_msc_destination.setIcon(new ImageIcon("res/select_file.png"));
+	select_msc_destination.setIcon(new ImageIcon("res/selectFolder.png"));
 	
 	vid_destination = new JTextField("C:/Users/"+username+"/Pictures/CleanDesktop");
-	vid_destination.setBounds(20, 110, 500, 25);
+	vid_destination.setBounds(20, 150, 500, 25);
 	vid_destination.setEditable(false);
 	
 	select_vid_destination = new JButton();
-	select_vid_destination.setBounds(520, 110, 30, 25);
+	select_vid_destination.setBounds(520, 150, 30, 25);
 	select_vid_destination.setBackground(new java.awt.Color(224, 74, 74,0));
 	select_vid_destination.setBorderPainted(false);
 	select_vid_destination.setBorder(null);
 	select_vid_destination.setContentAreaFilled(false);
-	select_vid_destination.setIcon(new ImageIcon("res/select_file.png"));
+	select_vid_destination.setIcon(new ImageIcon("res/selectFolder.png"));
 	
 	doc_destination = new JTextField("C:/Users/"+username+"/Pictures/CleanDesktop");
-	doc_destination.setBounds(20, 150, 500, 25);
+	doc_destination.setBounds(20, 190, 500, 25);
 	doc_destination.setEditable(false);
 	
 	select_doc_destination = new JButton();
-	select_doc_destination.setBounds(520, 150, 30, 25);
+	select_doc_destination.setBounds(520, 190, 30, 25);
 	select_doc_destination.setBackground(new java.awt.Color(224, 74, 74,0));
 	select_doc_destination.setBorderPainted(false);
 	select_doc_destination.setBorder(null);
 	select_doc_destination.setContentAreaFilled(false);
-	select_doc_destination.setIcon(new ImageIcon("res/select_file.png"));
+	select_doc_destination.setIcon(new ImageIcon("res/selectFolder.png"));
 	
 	description2 = new JLabel ("Delete Files");
-	description2.setBounds(20, 180, 100, 25);
+	description2.setBounds(20, 220, 100, 25);
 	
 	deleteEmptyFiles = new JRadioButton("Delete all Files < 1 KB");
-	deleteEmptyFiles.setBounds(20, 200, 150, 25);
+	deleteEmptyFiles.setBounds(20, 240, 150, 25);
 	deleteEmptyFiles.setBackground(new java.awt.Color(224, 74, 74));
+	deleteEmptyFiles.setIcon(new ImageIcon("res/checked.png"));
 	deleteEmptyFiles.setFocusPainted(false);
 	
 	customDeleteFiles = new JRadioButton("Delete all Files < ");
-	customDeleteFiles.setBounds(200, 200, 120, 25);
+	customDeleteFiles.setBounds(200, 240, 120, 25);
 	customDeleteFiles.setBackground(new java.awt.Color(224, 74, 74));
+	customDeleteFiles.setIcon(new ImageIcon("res/unchecked.png"));
 	customDeleteFiles.setFocusPainted(false);
 	
 	
-	
 	delete_size_range = new JTextField("22");
-	delete_size_range.setBounds(320, 200, 50, 25);
+	delete_size_range.setBounds(320, 240, 50, 25);
 	
 	kb = new JRadioButton("KB");
-	kb.setBounds(370, 200, 50, 25);
+	kb.setBounds(370, 240, 50, 25);
 	kb.setBackground(new java.awt.Color(224, 74, 74));
+	kb.setIcon(new ImageIcon("res/checked.png"));
 	kb.setFocusPainted(false);
 	
 	mb = new JRadioButton("MB");
-	mb.setBounds(420, 200, 50, 25);
+	mb.setBounds(420, 240, 50, 25);
 	mb.setBackground(new java.awt.Color(224, 74, 74));
+	mb.setIcon(new ImageIcon("res/unchecked.png"));
 	mb.setFocusPainted(false);
 	
 	gb = new JRadioButton("GB");
-	gb.setBounds(480, 200, 50, 25);
+	gb.setBounds(480, 240, 50, 25);
 	gb.setBackground(new java.awt.Color(224, 74, 74));
+	gb.setIcon(new ImageIcon("res/unchecked.png"));
 	gb.setFocusPainted(false);
 	
 	getStandardSettings = new JButton();
-	getStandardSettings.setBounds(220, 300, 64, 64);
+	getStandardSettings.setBounds(260, 300, 64, 64);
 	getStandardSettings.setBackground(new java.awt.Color(224, 74, 74,0));
 	getStandardSettings.setBorderPainted(false);
 	getStandardSettings.setBorder(null);
@@ -145,10 +164,10 @@ public class SettingsFrame extends JFrame {
 	getStandardSettings.setIcon(new ImageIcon("res/reset.png"));
 	
 	description3 = new JLabel ("File Whitelist");
-	description3.setBounds(20, 230, 300, 25);
+	description3.setBounds(20, 270, 300, 25);
 	
 	addFileToWL = new JButton();
-	addFileToWL.setBounds(20, 260, 50, 50);
+	addFileToWL.setBounds(10, 290, 50, 50);
 	addFileToWL.setBackground(new java.awt.Color(224, 74, 74,0));
 	addFileToWL.setBorderPainted(false);
 	addFileToWL.setBorder(null);
@@ -156,7 +175,7 @@ public class SettingsFrame extends JFrame {
 	addFileToWL.setIcon(new ImageIcon("res/addFile.png"));
 	
 	removeFileFromWL = new JButton();
-	removeFileFromWL.setBounds(75, 260, 50, 50);
+	removeFileFromWL.setBounds(45, 290, 50, 50);
 	removeFileFromWL.setBackground(new java.awt.Color(224, 74, 74,0));
 	removeFileFromWL.setBorderPainted(false);
 	removeFileFromWL.setBorder(null);
@@ -164,7 +183,7 @@ public class SettingsFrame extends JFrame {
 	removeFileFromWL.setIcon(new ImageIcon("res/removeFile.png"));
 	
 	showWL = new JButton();
-	showWL.setBounds(130, 260, 50, 50);
+	showWL.setBounds(80, 290, 50, 50);
 	showWL.setBackground(new java.awt.Color(224, 74, 74,0));
 	showWL.setBorderPainted(false);
 	showWL.setBorder(null);
@@ -186,6 +205,12 @@ public class SettingsFrame extends JFrame {
 	minimizeBtn.setBorder(null);
 	minimizeBtn.setContentAreaFilled(false);
 	minimizeBtn.setIcon(new ImageIcon("res/minimize_operation.png"));
+	
+    try {
+    	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    }catch (Exception ex) {
+    	
+    }
 		
 	//Adding Elements
 	add(description1);
@@ -211,7 +236,16 @@ public class SettingsFrame extends JFrame {
 	add(showWL);
 	add(closeBtn);
 	add(minimizeBtn);
+	add(title);
+	add(border);
 	add(jp);
+	
+	try{    
+		setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
+	}
+	catch (Exception ex){
+		
+	}
 	
 	
 	select_img_destination.addActionListener(new ActionListener()
@@ -265,6 +299,7 @@ public class SettingsFrame extends JFrame {
 			deleteEmptyFiles.setSelected(false);
 			changeSettings.changeSettings("false", 6);
 			changeSettings.changeSettings("true", 7);
+			getSettings();
 		}
 	});
 	
@@ -275,6 +310,7 @@ public class SettingsFrame extends JFrame {
 			customDeleteFiles.setSelected(false);
 			changeSettings.changeSettings("true", 6);
 			changeSettings.changeSettings("false", 7);
+			getSettings();
 		}
 	});
 	
@@ -285,6 +321,7 @@ public class SettingsFrame extends JFrame {
 			gb.setSelected(false);
 			mb.setSelected(false);
 			changeSettings.changeSettings("kb", 9);
+			getSettings();
 		}
 	});
 	
@@ -295,6 +332,7 @@ public class SettingsFrame extends JFrame {
 			gb.setSelected(false);
 			kb.setSelected(false);
 			changeSettings.changeSettings("mb", 9);
+			getSettings();
 		}
 	});
 	
@@ -305,6 +343,7 @@ public class SettingsFrame extends JFrame {
 			mb.setSelected(false);
 			kb.setSelected(false);
 			changeSettings.changeSettings("gb", 9);
+			getSettings();
 		}
 	});
 	
@@ -324,7 +363,8 @@ public class SettingsFrame extends JFrame {
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			new InitialiseSettings();
+			InitialiseSettings initSettings = new InitialiseSettings();
+			initSettings.setStandardSettings();
 			getSettings();
 		}
 	});
@@ -334,7 +374,16 @@ public class SettingsFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			FileWhitelist fw = new FileWhitelist();
-			fw.selectFiles();
+			fw.selectFiles(false);
+		}
+	});
+	
+	removeFileFromWL.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			FileWhitelist fw = new FileWhitelist();
+			fw.selectFiles(true);
 		}
 	});
 	
@@ -417,8 +466,33 @@ public class SettingsFrame extends JFrame {
 	        	lineCounter++;
 	           }
 	        br.close();
+	        
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		  resetGUI();
 	}
+
+	public void resetGUI() {
+		kb.setIcon(new ImageIcon("res/unchecked.png"));
+		mb.setIcon(new ImageIcon("res/unchecked.png"));
+		gb.setIcon(new ImageIcon("res/unchecked.png"));
+		customDeleteFiles.setIcon(new ImageIcon("res/unchecked.png"));
+		deleteEmptyFiles.setIcon(new ImageIcon("res/unchecked.png"));
+		
+		if (kb.isSelected()) {
+			kb.setIcon(new ImageIcon("res/checked.png"));
+		}else if (mb.isSelected()) {
+			mb.setIcon(new ImageIcon("res/checked.png"));
+		}else if (gb.isSelected()){
+			gb.setIcon(new ImageIcon("res/checked.png"));
+		}
+		
+		if (deleteEmptyFiles.isSelected()) {
+			deleteEmptyFiles.setIcon(new ImageIcon("res/checked.png"));
+		}else {
+			customDeleteFiles.setIcon(new ImageIcon("res/checked.png"));
+		}
+	}
+	
 }
