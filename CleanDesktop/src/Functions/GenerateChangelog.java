@@ -5,10 +5,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class GenerateChangelog {
+	
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
 	
 	public GenerateChangelog(String [] htmlLogStructureMid) {
@@ -43,11 +42,11 @@ public class GenerateChangelog {
 		try {
 			BufferedWriter writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Logs\\Changelog.html", false));			
 			
-			//Text Writer
 			for (int a=0; a < htmlLogStructureStart.length; a++) {
 				writer.write(""+htmlLogStructureStart[a]);
 				writer.newLine();
 			}
+			
 			for (int b=0; b < htmlLogStructureMid.length; b++) {
 				System.out.println(htmlLogStructureMid[b]);
 				if (htmlLogStructureMid[b] != null) {
@@ -59,20 +58,22 @@ public class GenerateChangelog {
 					if (htmlLogStructureMid[b].startsWith("del_")) {
 						writer.write("<a style='padding-left: 15%; color: orangered'>"+htmlLogStructureMid[b].substring(4, htmlLogStructureMid[b].length())+"</a><a style='color:red'> DELETED</a><br>");
 					}else {
-					writer.write("<a style='padding-left: 15%; color: orangered'>"+htmlLogStructureMid[b]+"</a><a style='color:green'> TRANSFERED TO: </a><a style='text-decoration: underline; color: blue;'>" + path + "</a><br>");
+						writer.write("<a style='padding-left: 15%; color: orangered'>"+htmlLogStructureMid[b]+"</a><a style='color:green'> TRANSFERED TO: </a><a style='text-decoration: underline; color: blue;'>" + path + "</a><br>");
 					}
 					writer.newLine();
 				}
 			}
+			
 			for (int c=0; c < htmlLogStructureEnd.length; c++) {
 				writer.write(""+htmlLogStructureEnd[c]);
 				writer.newLine();
 			}
+			
 			writer.close();
 			File htmlFile = new File("C:\\CleanDesktop\\Logs\\Changelog.html");
 			Desktop.getDesktop().browse(htmlFile.toURI());
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.printStackTrace(); //#TODO
 		}		
 	}
 }

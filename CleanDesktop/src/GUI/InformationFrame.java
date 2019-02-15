@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class InformationFrame extends JFrame {
 
 	JButton closeBtn, minimizeBtn;
-	JLabel title,border;
+	JLabel title,border,programmedBy,iconsFrom;
 	JPanel jp = new JPanel();
 	int width = 600;
 	int height = 400;
@@ -40,6 +40,7 @@ public class InformationFrame extends JFrame {
 		setSize(width, height);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
+		setVisible(true);
 				
 		closeBtn = new JButton();
 		closeBtn.setBounds(568, 0, 32, 32);
@@ -55,7 +56,7 @@ public class InformationFrame extends JFrame {
 		minimizeBtn.setContentAreaFilled(false);
 		minimizeBtn.setIcon(new ImageIcon("res/minimize_operation.png"));
 				
-		title = new JLabel("About Us");
+		title = new JLabel("Credits");
 		title.setBounds((width-126)/2,0,126,32);
 		title.setFont(new Font("Calibri",Font.PLAIN,22));
 		title.setForeground(Color.WHITE);
@@ -66,11 +67,23 @@ public class InformationFrame extends JFrame {
 		border.setFont(new Font("Calibri",Font.PLAIN,22));
 		border.setForeground(Color.WHITE);
 		
+		programmedBy = new JLabel("Programmed by: Justin Akdogan & Tim Steinhagen");
+		programmedBy.setBounds((width-325)/2,100,325,32);
+		programmedBy.setFont(new Font("Calibri",Font.PLAIN,16));
+		programmedBy.setForeground(Color.WHITE);
+		
+		iconsFrom = new JLabel("Icons From: pixabay.com");
+		iconsFrom.setBounds((width-325)/2,150,325,32);
+		iconsFrom.setFont(new Font("Calibri",Font.PLAIN,16));
+		iconsFrom.setForeground(Color.WHITE);
+		
 		//Adding Elements
 		add(closeBtn);
 		add(minimizeBtn);
 		add(title);
 		add(border);
+		add(programmedBy);
+		add(iconsFrom);
 		add(jp);
 		validate();
 		

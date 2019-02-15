@@ -27,7 +27,7 @@ import Functions.FileWhitelist;
 public class MainFrame extends JFrame {
 	JButton startBtn, whiteBtn, settingsBtn, closeBtn, minimizeBtn, infoBtn;
 	JLabel title,border;
-	CreateWorkspace cw = new CreateWorkspace();
+	CreateWorkspace cw = new CreateWorkspace(); // #TODO 
 	JPanel jp = new JPanel();
 	int width = 600;
 	int height = 400;
@@ -162,6 +162,7 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				InformationFrame infoFrame = new InformationFrame();
+				//setSize(1200,600);
 			}
 		});
 		

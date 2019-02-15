@@ -7,17 +7,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
-
 import javax.swing.JFileChooser;
-import javax.swing.UIManager;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileWhitelist {
-
+	//#TODO
 	String username = System.getProperty("user.name");
 	LocalDateTime now = LocalDateTime.now();
 	static String thisLine = null;
