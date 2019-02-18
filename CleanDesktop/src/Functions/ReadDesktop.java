@@ -14,7 +14,6 @@ public class ReadDesktop {
 	String path;
 	int allowedDeleteSize = 22;
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
-	TransferFolders transFolders = new TransferFolders();
 	
 	public ReadDesktop(String prepath) {
 		path = prepath;
@@ -37,16 +36,14 @@ public class ReadDesktop {
 				if (Boolean.parseBoolean(gcap.getSetup("del_customFiles")) == true) {
 					if (size > allowedDeleteSize) {
 						transferedFiles[i] = file.getName();
-						//new TransferFiles(filelist[i]); 
-						transFolders.TransferFiles(filelist[i]);
+						new TransferFiles(filelist[i]); 
 					}else {
 					transferedFiles[i] = "del_"+file.getName();
 					file.delete();	
 					}
 				}else if (size > 1) {
-					//transferedFiles[i] = file.getName();
+					transferedFiles[i] = file.getName();
 					new TransferFiles(filelist[i]); 
-					transFolders.TransferFiles(filelist[i]);
 					
 				}else {
 					transferedFiles[i] = "del_"+file.getName();
