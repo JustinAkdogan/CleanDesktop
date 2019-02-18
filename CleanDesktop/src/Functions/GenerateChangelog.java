@@ -9,6 +9,7 @@ import java.io.IOException;
 public class GenerateChangelog {
 	
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
 	
 	public GenerateChangelog(String [] htmlLogStructureMid) {
 		
@@ -40,7 +41,7 @@ public class GenerateChangelog {
 	
 	public void generateLog(String [] htmlLogStructureStart,String [] htmlLogStructureMid,String [] htmlLogStructureEnd) {
 		try {
-			BufferedWriter writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Logs\\Changelog.html", false));			
+			BufferedWriter writer = new BufferedWriter (new FileWriter(gcap.getSetup("path")+"/Logs/Changelog.html", false));			
 			
 			for (int a=0; a < htmlLogStructureStart.length; a++) {
 				writer.write(""+htmlLogStructureStart[a]);
@@ -70,10 +71,10 @@ public class GenerateChangelog {
 			}
 			
 			writer.close();
-			File htmlFile = new File("C:\\CleanDesktop\\Logs\\Changelog.html");
+			File htmlFile = new File(gcap.getSetup("path")+"/Logs/Changelog.html");
 			Desktop.getDesktop().browse(htmlFile.toURI());
 		} catch (IOException e) {
-			e.printStackTrace(); //#TODO
+			generateErrorlog.WriteInErrorLog(4, getClass().getName());
 		}		
 	}
 }

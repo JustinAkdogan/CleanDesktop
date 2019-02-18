@@ -32,7 +32,7 @@ public class ReadDesktop {
 			//int size = (int) file.length();
 			getDeleteSize();
 			
-			if (!FileWhitelist.checkFilesInWhitelist(file.getName()) && file.getName().contains(".")) {
+			if (!FileWhitelist.isFileInWhitelist(file.getName()) && file.getName().contains(".")) {
 				if (Boolean.parseBoolean(gcap.getSetup("del_customFiles")) == true) {
 					if (size > allowedDeleteSize) {
 						transferedFiles[i] = file.getName();

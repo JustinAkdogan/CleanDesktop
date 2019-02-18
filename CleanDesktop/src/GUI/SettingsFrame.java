@@ -44,6 +44,9 @@ public class SettingsFrame extends JFrame {
 	int height = 400;
 	private java.awt.Point initialClick;
 	
+	//Classes
+	FileWhitelist whitelist = new FileWhitelist();
+	
 	
 	
 	
@@ -274,7 +277,6 @@ public class SettingsFrame extends JFrame {
 //			String destination = desfolder.chooseFolder();
 //			if (changeSettings != null) {  
 //				TransferProgramFiles transfoprogram = new TransferProgramFiles(destination);
-//				changeSettings.changeSettings(destination, 11);
 //			}
 //			getSettings();
 		}
@@ -415,8 +417,7 @@ public class SettingsFrame extends JFrame {
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			FileWhitelist fw = new FileWhitelist();
-			fw.selectFiles(false);
+			whitelist.selectFiles(false);
 		}
 	});
 	
@@ -424,8 +425,15 @@ public class SettingsFrame extends JFrame {
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-//			FileWhitelist fw = new FileWhitelist();
-//			fw.selectFiles(true);
+			//whitelist.showFileWhitelist();
+		}
+	});
+	
+	showWL.addActionListener(new ActionListener()
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			whitelist.showFileWhitelist();			
 		}
 	});
 	
@@ -535,6 +543,11 @@ public class SettingsFrame extends JFrame {
 		}else {
 			customDeleteFiles.setIcon(new ImageIcon("res/checked.png"));
 		}
-	}
+	}	
 	
+	
+	public String getProgramPath() {
+		dispose();
+		return program_path.getText();
+	}
 }

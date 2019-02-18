@@ -6,6 +6,8 @@ import java.io.IOException;
 public class CreateWorkspace {
 	
 	InitialiseSettings initSettings = new InitialiseSettings();
+	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
+	
 	
 	String prepath = "C:\\CleanDesktop\\";
 	String prepathlog = "C:\\CleanDesktop\\Logs\\";
@@ -13,6 +15,7 @@ public class CreateWorkspace {
 	
 	public CreateWorkspace() {
 		String username = System.getProperty("user.name");
+		
 		
 		//Folders
 		File doc_folder = new File("C:\\Users\\"+username+"\\Documents\\CleanDesktop");
@@ -25,7 +28,6 @@ public class CreateWorkspace {
 		//Files
 		File err_log = new File(prepathlog + "Errorlog.txt");
 		File chg_log = new File(prepathlog + "Changelog.html");
-		File whl_log = new File(prepath + "Whitelist.txt");
 		File set_log = new File(prepath + "Settings.ini");
 		
 		if(!doc_folder.exists()) {
@@ -52,7 +54,7 @@ public class CreateWorkspace {
 			try {
 				err_log.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace(); // #TODO
+				generateErrorlog.WriteInErrorLog(2, getClass().getName());
 			}
 		}
 				
@@ -60,7 +62,7 @@ public class CreateWorkspace {
 			try {
 				chg_log.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace(); // #TODO
+				generateErrorlog.WriteInErrorLog(2, getClass().getName());
 			}
 		}
 		
@@ -69,7 +71,7 @@ public class CreateWorkspace {
 				set_log.createNewFile();
 				initSettings.setStandardSettings();
 			} catch (IOException e) {
-				e.printStackTrace(); // #TODO
+				generateErrorlog.WriteInErrorLog(2, getClass().getName());
 			}
 		}else if (set_log.length() < 1) {
 			initSettings.setStandardSettings();

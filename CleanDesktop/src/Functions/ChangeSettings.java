@@ -10,39 +10,17 @@ public class ChangeSettings {
 	
     BufferedWriter out;
     BufferedReader br;
-    String fileContent [];
+    String fileContent []; 
     GetCategoryAndProperty gcap = new GetCategoryAndProperty();
-    //int li;
+    ReadAndSaveFileContent readAndSaveFileContent = new ReadAndSaveFileContent();
+    GenerateErrorlog generateErrorlog = new GenerateErrorlog();
     
 	public void changeSettings(String path, int lineNo) {
-		readAndSaveSettings(false);
 		writeInSettings(path, lineNo);
 	}
 	
-	public void generateStringArray(int settingsLength) {
-		fileContent = new String [settingsLength];
-		readAndSaveSettings(true);
-	}
-		
-	
-	public void readAndSaveSettings(boolean saveSettings) {
-		int lineNo = 0;
-		try {
-			br = new BufferedReader(new FileReader(gcap.getSetup("path")+"\\Settings.ini"));
-			String line;
-			
-	        while ((line = br.readLine()) != null) {
-	        	if (saveSettings) { fileContent[lineNo] = line; }
-	        	lineNo++;
-	        }
-	        br.close();
-	        if (!saveSettings) { generateStringArray(lineNo); }
-		} catch (IOException e) {
-			e.printStackTrace(); //#TODO
-		}
-	}
-	
 	public void writeInSettings(String path, int lineNo) {
+		fileContent = readAndSaveFileContent.readSaveAndGetFileContent(gcap.getSetup("path")+"/Settings.ini", false);
 		String settingString = fileContent[lineNo]; 
 		
 		if (path.contains("null") && path.length() <= 4) {
@@ -58,7 +36,7 @@ public class ChangeSettings {
 			}
 			out.close();
 		} catch (IOException e) {
-			e.printStackTrace(); //#TODO
+			generateErrorlog.WriteInErrorLog(1, this.getClass().getName());
 		}
 	}
 	

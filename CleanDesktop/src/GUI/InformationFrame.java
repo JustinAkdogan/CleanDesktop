@@ -67,7 +67,7 @@ public class InformationFrame extends JFrame {
 		border.setFont(new Font("Calibri",Font.PLAIN,22));
 		border.setForeground(Color.WHITE);
 		
-		programmedBy = new JLabel("Programmed by: Justin Akdogan & Tim Steinhagen");
+		programmedBy = new JLabel("Programmed by: Justin Akdogan");
 		programmedBy.setBounds((width-325)/2,100,325,32);
 		programmedBy.setFont(new Font("Calibri",Font.PLAIN,16));
 		programmedBy.setForeground(Color.WHITE);

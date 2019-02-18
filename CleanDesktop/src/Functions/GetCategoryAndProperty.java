@@ -4,7 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import GUI.SettingsFrame;
+
 public class GetCategoryAndProperty {
+	
+	ReadAndSaveFileContent readAndSaveFileContent = new ReadAndSaveFileContent();
 	
 	public int selectCategory(String filename) {
 		String file = filename.substring(0,filename.length());
@@ -29,10 +33,11 @@ public class GetCategoryAndProperty {
 	}
 	
 	public String getSetup(String Settingline) {
-		
+		SettingsFrame settings = new SettingsFrame();
+		String programPath = settings.getProgramPath();
         BufferedReader br;
 		try {
-			br = new BufferedReader(new FileReader("C:\\CleanDesktop\\Settings.ini"));
+			br = new BufferedReader(new FileReader(programPath+"\\Settings.ini"));
 			String line;
 	        while ((line = br.readLine()) != null) {
 	        	if(line.contains(Settingline)) {
@@ -41,16 +46,17 @@ public class GetCategoryAndProperty {
 	        }
                br.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//generateErrorlog.WriteInErrorLog(1, getClass().getName());
 		}
 		return null;
 	}
 	
 	public String getProperty(String Settingline) {
-		
+		SettingsFrame settings = new SettingsFrame();
+		String programPath = settings.getProgramPath();
         BufferedReader br;
 		try {
-			br = new BufferedReader(new FileReader("C:\\CleanDesktop\\Settings.ini"));
+			br = new BufferedReader(new FileReader(programPath+"\\Settings.ini"));
 			String line;
 	        while ((line = br.readLine()) != null) {
 	        	if(line.contains(Settingline)) {
@@ -59,7 +65,7 @@ public class GetCategoryAndProperty {
 	        }
                br.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//generateErrorlog.WriteInErrorLog(1, getClass().getName());
 		}
 		return null;
 	}
