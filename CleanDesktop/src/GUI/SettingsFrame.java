@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -28,6 +29,7 @@ import javax.swing.UIManager;
 import Functions.ChangeSettings;
 import Functions.ChooseDestinationFolder;
 import Functions.FileWhitelist;
+import Functions.GetCategoryAndProperty;
 import Functions.InitialiseSettings;
 import Functions.TransferProgramFiles;
 
@@ -46,10 +48,7 @@ public class SettingsFrame extends JFrame {
 	
 	//Classes
 	FileWhitelist whitelist = new FileWhitelist();
-	
-	
-	
-	
+
 	int lineCounter = 0;
 	public SettingsFrame() {
 	setSize(width, height);
@@ -288,7 +287,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			ChooseDestinationFolder desfolder = new ChooseDestinationFolder();
 			String destination = desfolder.chooseFolder();
-			if (changeSettings != null) {  changeSettings.changeSettings(destination, 1);}
+			if (changeSettings != null) {  changeSettings.changeSettings(destination, (byte) 1);}
 			getSettings();
 		}
 	});
@@ -299,7 +298,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			ChooseDestinationFolder desfolder = new ChooseDestinationFolder();
 			String destination = desfolder.chooseFolder();
-			if (changeSettings != null) {  changeSettings.changeSettings(destination, 2);}
+			if (changeSettings != null) {  changeSettings.changeSettings(destination,(byte) 2);}
 			getSettings();
 		}
 	});
@@ -310,7 +309,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			ChooseDestinationFolder desfolder = new ChooseDestinationFolder();
 			String destination = desfolder.chooseFolder();
-			if (changeSettings != null) {  changeSettings.changeSettings(destination, 3);}
+			if (changeSettings != null) {  changeSettings.changeSettings(destination,(byte) 3);}
 			getSettings();
 		}
 	});
@@ -321,7 +320,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			ChooseDestinationFolder desfolder = new ChooseDestinationFolder();
 			String destination = desfolder.chooseFolder();
-			if (changeSettings != null) {  changeSettings.changeSettings(destination, 4);}
+			if (changeSettings != null) {  changeSettings.changeSettings(destination,(byte) 4);}
 			getSettings();
 		}
 	});
@@ -331,8 +330,8 @@ public class SettingsFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			deleteEmptyFiles.setSelected(false);
-			changeSettings.changeSettings("false", 6);
-			changeSettings.changeSettings("true", 7);
+			changeSettings.changeSettings("false", (byte) 6);
+			changeSettings.changeSettings("true", (byte) 7);
 			getSettings();
 		}
 	});
@@ -342,8 +341,8 @@ public class SettingsFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			customDeleteFiles.setSelected(false);
-			changeSettings.changeSettings("true", 6);
-			changeSettings.changeSettings("false", 7);
+			changeSettings.changeSettings("true", (byte) 6);
+			changeSettings.changeSettings("false", (byte) 7);
 			getSettings();
 		}
 	});
@@ -354,7 +353,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			gb.setSelected(false);
 			mb.setSelected(false);
-			changeSettings.changeSettings("kb", 9);
+			changeSettings.changeSettings("kb", (byte) 9);
 			getSettings();
 		}
 	});
@@ -365,7 +364,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			gb.setSelected(false);
 			kb.setSelected(false);
-			changeSettings.changeSettings("mb", 9);
+			changeSettings.changeSettings("mb", (byte) 9);
 			getSettings();
 		}
 	});
@@ -376,7 +375,7 @@ public class SettingsFrame extends JFrame {
 		public void actionPerformed(ActionEvent arg0) {
 			mb.setSelected(false);
 			kb.setSelected(false);
-			changeSettings.changeSettings("gb", 9);
+			changeSettings.changeSettings("gb", (byte) 9);
 			getSettings();
 		}
 	});
@@ -386,7 +385,7 @@ public class SettingsFrame extends JFrame {
 			char input = e.getKeyChar();
 			if((input < '0' || input > '9' && input != '\b')) {
 				e.consume();
-				changeSettings.changeSettings(delete_size_range.getText(), 8);
+				changeSettings.changeSettings(delete_size_range.getText(),(byte) 8);
 				// #TODO Write in Settings don't work correctly
 			}
 		}
@@ -425,7 +424,7 @@ public class SettingsFrame extends JFrame {
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			//whitelist.showFileWhitelist();
+			whitelist.selectFiles(true);
 		}
 	});
 	

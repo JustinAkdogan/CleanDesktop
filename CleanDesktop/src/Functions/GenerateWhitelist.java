@@ -16,14 +16,14 @@ public class GenerateWhitelist {
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
 	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
 	
-	public GenerateWhitelist(String [] filenames) {
+	public GenerateWhitelist(String [] filenames, boolean append) {
 		
 		String [] htmlLogStructureStart = {
 				"<!DOCTYPE html>",
 				"<html lang=\"en\">",
 				"<head>",
 				"<meta charset=\"UTF-8\">",
-				"<title>Changelog</title>",
+				"<title>Whitelist</title>",
 				"<meta name=viewport content=\"width=device-width, initial-scale=1\">",
 				"<script src=\"http://code.jquery.com/jquery-1.10.2.min.js\"></script>",
 				"<meta charset=\"utf-8\">",
@@ -40,12 +40,14 @@ public class GenerateWhitelist {
 				"<span style='white-space:nowrap;'>"
 		};
 		
-		generateLog(htmlLogStructureStart,filenames);
+		generateLog(htmlLogStructureStart,filenames, append);
 	}
 	
-	public void generateLog(String [] htmlLogStructureStart,String [] filenames) {
+	public void generateLog(String [] htmlLogStructureStart,String [] filenames, boolean generateNew) {
 		try {
-			BufferedWriter writer = new BufferedWriter (new FileWriter(gcap.getSetup("path")+"/Whitelist.html", true));			
+			
+			BufferedWriter writer = new BufferedWriter (new FileWriter(gcap.getSetup("path")+"/Whitelist.html", generateNew));		
+
 			File htmlFile = new File(gcap.getSetup("path")+"/Whitelist.html");
 			
 			if (htmlFile.length() < 1) {

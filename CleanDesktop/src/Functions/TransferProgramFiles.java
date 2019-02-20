@@ -6,55 +6,63 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Properties;
 
 public class TransferProgramFiles {
 	
 	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	ReadAndSaveFileContent readandsave = new ReadAndSaveFileContent();
+	ChangeSettings changeSettings = new ChangeSettings();
 	String newPath = null;
 	
 	public TransferProgramFiles(String Path) {
-		String username = System.getProperty("user.name");
-		String filename = "Logs/Errorlog.txt";
-		ChangeSettings changeSettings = new ChangeSettings();
+		String [] filesToTransfer = {"Settings.ini","Whitelist.html","Logs\\Changelog.html","Logs\\Errorlog.txt"};
 		newPath = Path;
+				
+		CreateWorkspace createWorkspace = new CreateWorkspace(newPath);
 		
-		File logDir = new File(newPath+"/Logs/");
-		
-		File settings = new File(newPath+"/Settings.ini");
-		
-		if(!logDir.exists())
-			logDir.mkdir();
-		
-		if(!settings.exists())
-			try {
-				settings.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace(); //#TODO
+		for (byte i=0; i < 4; i++) {
+			if (i == 0) {
+				transferFile(filesToTransfer[i], setNewProgramPath(readandsave.readSaveAndGetFileContent(filesToTransfer[i], false)));
+			}else {
+				transferFile(filesToTransfer[i], readandsave.readSaveAndGetFileContent(filesToTransfer[i], false));
 			}
-			
-		for (int i=0; i < 2; i++) {	
-			if (i==0) {filename = "Logs/Changelog.txt";}
-			if (i==1) {filename = "Whitelist.html";}
-			
-			File oldFile = new File (gcap.getSetup("path")+"/"+filename);
-			oldFile.renameTo(new File(newPath+"/"+oldFile.getName()));
 		}
-		changeSettings.changeSettings(newPath, 11);
-		//changeSettings.readAndSaveSettings(false);
-		transferSettings(changeSettings.getSettingContent());
-		
+		//deleteOldFiles();
+		System.setProperty("cleandesktop.path", newPath);
+		changeSettings.changeSettings(newPath, (byte) 11);
 	}
-	public void transferSettings(String [] settings) {
+	public void transferFile(String file, String [] fileContent) {
 		BufferedWriter out;
 		try {
-			out = new BufferedWriter(new FileWriter(newPath+"\\Settings.ini"));
-			for(int i=0; i < settings.length; i++) {
-				out.write(settings[i]);
+			out = new BufferedWriter(new FileWriter(newPath+"/"+file));
+			for(int i=0; i < fileContent.length; i++) {
+				out.write(fileContent[i]);
 				out.newLine();
 			}
 			out.close();
 		} catch (IOException e) {
 			e.printStackTrace(); //#TODO
+		}
+	}
+	
+	public String [] setNewProgramPath(String [] settingContent) {
+		for (byte i=0; i < settingContent.length; i++) {
+			if (settingContent[i].contains("path")) {
+				settingContent[i] = "path="+newPath;
+			}
+		}
+		return settingContent;
+	}
+	
+	public void deleteOldFiles() {
+		String currPath = gcap.getSetup("path");
+		File sysFolder = new File(currPath);
+		String fileList[] = sysFolder.list();
+		
+		for (byte i=0; i < fileList.length; i++) {
+			File file = new File (currPath + "\\" + fileList[i]);
+			file.delete();
 		}
 	}
 

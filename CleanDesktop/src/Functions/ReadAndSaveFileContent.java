@@ -4,17 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-import GUI.SettingsFrame;
-
 public class ReadAndSaveFileContent {
 	
+	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
 	String [] fileContent = null;
 	
-	public String [] readSaveAndGetFileContent(String file, Boolean saveSettings) {
+	public String [] readSaveAndGetFileContent(String file, Boolean saveSettings) { //#TODO Parameter 
 		BufferedReader br;
 		int lineNo = 0;
 		try {
-			br = new BufferedReader(new FileReader(file));
+			br = new BufferedReader(new FileReader(gcap.getSetup("path")+"/"+file));
 			String line;
 			
 	        while ((line = br.readLine()) != null) {
@@ -31,7 +30,7 @@ public class ReadAndSaveFileContent {
 	
 	public boolean isStringInFile(String file, String string) {
 		try {
-			BufferedReader br = new BufferedReader (new FileReader(file));
+			BufferedReader br = new BufferedReader (new FileReader(gcap.getSetup("path")+"/"+file));
 			String line = null;
 	        while ((line = br.readLine()) != null) {
 	        	if (line.contains(string)) {

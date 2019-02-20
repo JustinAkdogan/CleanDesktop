@@ -27,7 +27,7 @@ public class InitialiseSettings {
 		BufferedWriter writer;
 		try {
 			writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Settings.ini", false));
-			for (int i=0; i < settingStructure.length; i++) {
+			for (byte i=0; i < settingStructure.length; i++) {
 				writer.write(settingStructure[i]);
 				writer.newLine();
 			}
@@ -38,7 +38,7 @@ public class InitialiseSettings {
 	}
 	
 	public String getStandardSetting(String property) {
-		for (int i=0; i < settingStructure.length; i++) {
+		for (byte i=0; i < settingStructure.length; i++) {
 			if (settingStructure[i].contains(property)) {
 				String standardSetup = settingStructure[i].substring(settingStructure[i].indexOf("=")+1, settingStructure[i].length());
 				return standardSetup;

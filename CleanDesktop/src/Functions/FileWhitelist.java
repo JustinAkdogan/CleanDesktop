@@ -35,7 +35,7 @@ public class FileWhitelist {
         	if(!deleteFiles) {
         		generateFileNameArray(files);
         	}else {
-        		//readAndSaveWhitelist(files);
+        		deleteFilesFromWhitelist(files);
         	}
         }
 	}
@@ -45,7 +45,7 @@ public class FileWhitelist {
 		for (int i=0; i < files.length; i++) {
 			filenames[i] = files[i].getName();
 		}
-		GenerateWhitelist generateWhitelist = new GenerateWhitelist(filenames);
+		GenerateWhitelist generateWhitelist = new GenerateWhitelist(filenames,true);
 	}
 	
 	public void showFileWhitelist() {
@@ -57,104 +57,46 @@ public class FileWhitelist {
 	}
 	
 	public static boolean isFileInWhitelist(String filename) {
-		if (readandsave.isStringInFile(gcap.getSetup("path")+"/Whitelist.html", filename)) {
+		if (readandsave.isStringInFile("Whitelist.html", filename)) {
 			return true;
 		}
 		return false;
 	}
-//		try {
-//			BufferedReader br = new BufferedReader (new FileReader(whitelist));
-//			String line = null;
-//	        while ((line = br.readLine()) != null) {
-//	        	if (line.contains(filename)) {
-//	        		return true;
-//	        	}
-//	        }
-//		} catch (IOException e) {
-//			e.printStackTrace(); // #TODO 
-//		}
-//		
-//		return false;
 	
-//	public void saveFilesInWhitelist(File [] files) {
-//		GenerateWhitelist gen_whitelist = new GenerateWhitelist(files []);
-//		try {
-//			BufferedWriter writer = new BufferedWriter (new FileWriter("C:\\CleanDesktop\\Whitelist.txt", true));			
-//			DateTimeFormatter df;
-//			df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");  
-//			
-//			//Text Writer
-//			writer.write(""+now.format(df));
-//			writer.newLine();
-//			for (int i=0; i < files.length; i++) {
-//				checkFilesInWhitelist(""+files[i]);
-//				writer.write(""+files[i].getName());
-//				writer.newLine();
-//			}
-//			writer.close();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}		
-//	}
+	public void deleteFilesFromWhitelist(File[] files) {
+		String [] whiteListContent = readandsave.readSaveAndGetFileContent("Whitelist.html", false);
+		String [] whiteListFiles = generateStringArray(whiteListContent);
 		
+		int counter = 0;
+
+			for (int a=0; a < whiteListContent.length; a++) {
+				if (whiteListContent[a].contains("<a style='color: green'>")) {
+					whiteListFiles[counter] = whiteListContent[a];
+					counter++;
+				}
+			}
+		
+		for (int b=0; b < files.length; b++) {
+			for (int c=0; c < whiteListFiles.length; c++) {
+				if (whiteListFiles[c] != null && whiteListFiles[c].contains("<a style='color: green'>"+files[b].getName()+"</a><br>")) {
+					whiteListFiles[c] = null;
+				}
+			}
+		}
 	
-//	public static boolean checkFilesInWhitelist(String filename) {
-//		try {
-//			BufferedReader reader = new BufferedReader (new FileReader("C:\\CleanDesktop\\Whitelist.txt"));
-//
-//			try {
-//				while((thisLine = reader.readLine()) != null) {
-//			
-//					if (thisLine.contains(filename)) {
-//						return true;
-//					}
-//				}
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//		return false;
-//	}
+		
+		GenerateWhitelist generateWhitelist = new GenerateWhitelist(whiteListFiles, false);
+	}
 	
-	
-//	public void readAndSaveWhitelist(File [] files) {
-//		String [] WLContent = new String[500];
-//		int counter = 0;
-//		try {
-//			BufferedReader reader = new BufferedReader (new FileReader("C:\\CleanDesktop\\Whitelist.txt"));
-//			
-//				try {
-//					while((thisLine = reader.readLine()) != null) {
-//						WLContent[counter] = thisLine;
-//						counter++;
-//					}
-//					deleteFilesFromWhitelist(files,WLContent);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//	}
-//	}
-	
-//	public void deleteFilesFromWhitelist(File [] files, String [] WLContent) {
-//		int counter = 0;
-//		for (int a=0; a < WLContent.length; a++) {
-//			if (counter < files.length) {
-//				if (checkFilesInWhitelist(files[counter].getName())) {
-//					WLContent[a] = "";
-//				}
-//			counter++;
-//			}
-//		}
-//		//saveFilesInWhitelist(null,WLContent);
-//	}
-	
-	
-	
+	private String [] generateStringArray(String [] whiteListContent) {
+		int counter = 0;
+		for (int a=0; a < whiteListContent.length; a++) {
+			if (whiteListContent[a].contains("<a style='color: green'>")) {
+				counter++;
+			}
+		}
+		String whiteListFiles [] = new String [counter];
+		return whiteListFiles;
+	}
 }
 

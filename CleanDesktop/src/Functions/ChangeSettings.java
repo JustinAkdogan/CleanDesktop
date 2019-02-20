@@ -15,12 +15,8 @@ public class ChangeSettings {
     ReadAndSaveFileContent readAndSaveFileContent = new ReadAndSaveFileContent();
     GenerateErrorlog generateErrorlog = new GenerateErrorlog();
     
-	public void changeSettings(String path, int lineNo) {
-		writeInSettings(path, lineNo);
-	}
-	
-	public void writeInSettings(String path, int lineNo) {
-		fileContent = readAndSaveFileContent.readSaveAndGetFileContent(gcap.getSetup("path")+"/Settings.ini", false);
+	public void changeSettings(String path, byte lineNo) {
+		fileContent = readAndSaveFileContent.readSaveAndGetFileContent("Settings.ini", false);
 		String settingString = fileContent[lineNo]; 
 		
 		if (path.contains("null") && path.length() <= 4) {
@@ -30,7 +26,8 @@ public class ChangeSettings {
 		fileContent[lineNo] = settingString = settingString.substring(0, settingString.indexOf("=")+1)+path;
 		try {
 			out = new BufferedWriter(new FileWriter(gcap.getSetup("path")+"\\Settings.ini"));
-			for(int i=0; i < fileContent.length; i++) {
+			//out = new BufferedWriter(new FileWriter("C:\\Users\\justin.akdogan\\Desktop\\system\\Settings.ini"));
+			for(byte i=0; i < fileContent.length; i++) {
 				out.write(fileContent[i]);
 				out.newLine();
 			}

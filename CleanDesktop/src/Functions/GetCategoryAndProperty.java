@@ -4,30 +4,34 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import GUI.SettingsFrame;
 
 public class GetCategoryAndProperty {
-	
-	ReadAndSaveFileContent readAndSaveFileContent = new ReadAndSaveFileContent();
-	
-	public int selectCategory(String filename) {
+		
+	public byte selectCategory(String filename) {
 		String file = filename.substring(0,filename.length());
 		String extension = null;
 		if (file.contains(".")) {
 		extension = filename.substring(filename.indexOf("."), filename.length());
 		}
 		if (extension != null) {
-			if (extension.contains(".png") || extension.contains(".jpg") || extension.contains(".gif") || extension.contains(".bmp")) {
+			extension = extension.toLowerCase();
+			if (extension.contains(".png") || extension.contains(".jpg") || extension.contains(".gif") || extension.contains(".bmp") ||
+				extension.contains(".tiff") || extension.contains(".swf") || extension.contains(".svg")) {
 				return 1;
-			}else if (extension.contains(".mp3")) {
+			}else if (extension.contains(".wav") || extension.contains(".mp3") || extension.contains(".wma") || extension.contains(".aac") ||
+					extension.contains(".ogg") || extension.contains(".flac") || extension.contains(".rm")) {
 				return 2;
-			}else if (extension.contains(".mp4")) {
+			}else if (extension.contains(".mpg") || extension.contains(".mpeg") || extension.contains(".vob") || extension.contains(".m2p") ||
+					extension.contains(".ts") || extension.contains(".mp4") || extension.contains(".mov") || extension.contains(".avi") ||
+					extension.contains(".wmv") || extension.contains(".asf") || extension.contains(".mkv") || extension.contains(".webm") ||
+					extension.contains(".flv") || extension.contains(".3gp")) {
 				return 3;
 			}else {
 				return 4;
 			}
-		}else {
-			//System.out.println("Dateiendung von: "+ file +" Unbekannt");
 		}
 		return 0;
 	}
