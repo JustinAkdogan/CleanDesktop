@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class GenerateErrorlog {
 	
-	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	
 	
 	public void WriteInErrorLog(int ErrorID, String Classname) {

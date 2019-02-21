@@ -2,7 +2,6 @@ package Functions;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -11,7 +10,7 @@ public class ChangeSettings {
     BufferedWriter out;
     BufferedReader br;
     String fileContent []; 
-    GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+    ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
     ReadAndSaveFileContent readAndSaveFileContent = new ReadAndSaveFileContent();
     GenerateErrorlog generateErrorlog = new GenerateErrorlog();
     
@@ -38,7 +37,7 @@ public class ChangeSettings {
 	}
 	
 	public String getStandardPath(String settingString){
-		GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+		ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 		InitialiseSettings initsettings = new InitialiseSettings();
 		return initsettings.getStandardSetting(gcap.getProperty(settingString));
 	}
@@ -46,5 +45,7 @@ public class ChangeSettings {
 	public String[] getSettingContent() {
 		return fileContent;
 	}
+	
+	
 	
 }

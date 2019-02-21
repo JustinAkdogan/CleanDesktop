@@ -3,7 +3,6 @@ package GUI;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -17,13 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import com.sun.javafx.scene.paint.GradientUtils.Point;
-
 import Functions.CreateWorkspace;
-import Functions.FileWhitelist;
-import Functions.GetCategoryAndProperty;
+import Functions.ReadSettingsAndGetCategory;
 import Functions.ReadDesktop;
 
 public class MainFrame extends JFrame {
@@ -201,7 +195,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void checkIfWorkspaceAlreadyExists() {
-		GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+		ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 		String systemPath = gcap.getSetup("path");
 		if (systemPath != null) {
 			CreateWorkspace cw = new CreateWorkspace(systemPath); 

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ReadAndSaveFileContent {
 	
-	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	String [] fileContent = null;
 	
 	public String [] readSaveAndGetFileContent(String file, Boolean saveSettings) { //#TODO Parameter 
@@ -37,6 +37,7 @@ public class ReadAndSaveFileContent {
 	        		return true;
 	        	}
 	        }
+	        br.close();
 		} catch (IOException e) {
 			e.printStackTrace(); 
 		}

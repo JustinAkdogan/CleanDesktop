@@ -1,9 +1,4 @@
-package main;
-import javax.swing.JButton;
-
-import Functions.CreateWorkspace;
-import Functions.TransferFiles;
-import Functions.ReadDesktop;
+package CleanDesktop;
 import GUI.MainFrame;
 
 public class main {

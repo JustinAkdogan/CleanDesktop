@@ -1,17 +1,11 @@
 package Functions;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
 
 public class TransferFiles {
 	
-	FileWhitelist flw = new FileWhitelist();
-	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	Whitelist flw = new Whitelist();
+	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	
 	public TransferFiles(String filename) {		
 			String username = System.getProperty("user.name");

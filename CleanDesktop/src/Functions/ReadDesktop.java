@@ -1,10 +1,6 @@
 package Functions;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 
 public class ReadDesktop {
@@ -13,7 +9,7 @@ public class ReadDesktop {
 	String desktoppath = "C:\\Users\\" + username + "\\Desktop";
 	String path;
 	int allowedDeleteSize = 22;
-	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	
 	public ReadDesktop(String prepath) {
 		path = prepath;
@@ -24,7 +20,7 @@ public class ReadDesktop {
 		File desktopfile = new File(desktoppath);
 		String filelist[] = desktopfile.list();
 		String transferedFiles [] = new String [filelist.length];
-		String transferedFilesDestinations [] = new String [filelist.length];
+		//String transferedFilesDestinations [] = new String [filelist.length];
 		int counter = filelist.length;
 		for(int i = 0; i <= counter - 1; i++) {			
 			File file = new File (desktoppath + "\\" + filelist[i]);
@@ -32,7 +28,7 @@ public class ReadDesktop {
 			//int size = (int) file.length();
 			getDeleteSize();
 			
-			if (!FileWhitelist.isFileInWhitelist(file.getName()) && file.getName().contains(".")) {
+			if (!Whitelist.isFileInWhitelist(file.getName()) && file.getName().contains(".")) {
 				if (Boolean.parseBoolean(gcap.getSetup("del_customFiles")) == true) {
 					if (size > allowedDeleteSize) {
 						transferedFiles[i] = file.getName();

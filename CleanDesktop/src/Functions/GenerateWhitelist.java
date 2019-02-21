@@ -1,19 +1,14 @@
 package Functions;
 
-import java.awt.Desktop;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
 public class GenerateWhitelist {
 	
-	FileWhitelist whitelist = new FileWhitelist();
-	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	Whitelist whitelist = new Whitelist();
+	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
 	
 	public GenerateWhitelist(String [] filenames, boolean append) {

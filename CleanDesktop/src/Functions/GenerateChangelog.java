@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class GenerateChangelog {
 	
-	GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
 	
 	public GenerateChangelog(String [] htmlLogStructureMid) {

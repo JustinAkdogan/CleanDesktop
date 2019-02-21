@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -14,8 +15,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -25,17 +24,14 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
-
 import Functions.ChangeSettings;
 import Functions.ChooseDestinationFolder;
-import Functions.FileWhitelist;
-import Functions.GetCategoryAndProperty;
+import Functions.Whitelist;
 import Functions.InitialiseSettings;
-import Functions.TransferProgramFiles;
 
 public class SettingsFrame extends JFrame {
 	JTextField img_destination, msc_destination, vid_destination, doc_destination, delete_size_range, program_path;
-	JButton select_img_destination, select_msc_destination, select_vid_destination, select_doc_destination,select_program_path,
+	JButton select_img_destination, select_msc_destination, select_vid_destination, select_doc_destination,show_program_path,
 	getStandardSettings,addFileToWL,removeFileFromWL,showWL,closeBtn,minimizeBtn;
 	JLabel description1,description2,description3,title,border,description4;
 	JRadioButton deleteEmptyFiles,customDeleteFiles,kb,mb,gb;
@@ -47,7 +43,7 @@ public class SettingsFrame extends JFrame {
 	private java.awt.Point initialClick;
 	
 	//Classes
-	FileWhitelist whitelist = new FileWhitelist();
+	Whitelist whitelist = new Whitelist();
 
 	int lineCounter = 0;
 	public SettingsFrame() {
@@ -170,7 +166,7 @@ public class SettingsFrame extends JFrame {
 	description3.setBounds(20, 320, 300, 25);
 	
 	addFileToWL = new JButton();
-	addFileToWL.setBounds(10, 350, 50, 50);
+	addFileToWL.setBounds(10, 335, 50, 50);
 	addFileToWL.setBackground(new java.awt.Color(224, 74, 74,0));
 	addFileToWL.setBorderPainted(false);
 	addFileToWL.setBorder(null);
@@ -178,7 +174,7 @@ public class SettingsFrame extends JFrame {
 	addFileToWL.setIcon(new ImageIcon("res/addFile.png"));
 	
 	removeFileFromWL = new JButton();
-	removeFileFromWL.setBounds(45, 350, 50, 50);
+	removeFileFromWL.setBounds(45, 335, 50, 50);
 	removeFileFromWL.setBackground(new java.awt.Color(224, 74, 74,0));
 	removeFileFromWL.setBorderPainted(false);
 	removeFileFromWL.setBorder(null);
@@ -186,7 +182,7 @@ public class SettingsFrame extends JFrame {
 	removeFileFromWL.setIcon(new ImageIcon("res/removeFile.png"));
 	
 	showWL = new JButton();
-	showWL.setBounds(80, 350, 50, 50);
+	showWL.setBounds(80, 335, 50, 50);
 	showWL.setBackground(new java.awt.Color(224, 74, 74,0));
 	showWL.setBorderPainted(false);
 	showWL.setBorder(null);
@@ -216,13 +212,13 @@ public class SettingsFrame extends JFrame {
 	program_path.setBounds(20, 70, 500, 25);
 	program_path.setEditable(false);
 	
-	select_program_path = new JButton();
-	select_program_path.setBounds(520, 70, 30, 25);
-	select_program_path.setBackground(new java.awt.Color(224, 74, 74,0));
-	select_program_path.setBorderPainted(false);
-	select_program_path.setBorder(null);
-	select_program_path.setContentAreaFilled(false);
-	select_program_path.setIcon(new ImageIcon("res/selectFolder.png"));
+	show_program_path = new JButton();
+	show_program_path.setBounds(520, 70, 30, 25);
+	show_program_path.setBackground(new java.awt.Color(224, 74, 74,0));
+	show_program_path.setBorderPainted(false);
+	show_program_path.setBorder(null);
+	show_program_path.setContentAreaFilled(false);
+	show_program_path.setIcon(new ImageIcon("res/showFolder.png"));
 	
     try {
     	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -258,7 +254,7 @@ public class SettingsFrame extends JFrame {
 	add(border);
 	add(description4);
 	add(program_path);
-	add(select_program_path);
+	add(show_program_path);
 	add(jp);
 	
 	try{    
@@ -268,16 +264,16 @@ public class SettingsFrame extends JFrame {
 		
 	}
 	
-	select_program_path.addActionListener(new ActionListener()
+	show_program_path.addActionListener(new ActionListener()
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-//			ChooseDestinationFolder desfolder = new ChooseDestinationFolder();
-//			String destination = desfolder.chooseFolder();
-//			if (changeSettings != null) {  
-//				TransferProgramFiles transfoprogram = new TransferProgramFiles(destination);
-//			}
-//			getSettings();
+			try {
+				Desktop.getDesktop().open(new File("C:\\CleanDesktop"));
+			} catch (IOException e) {
+				//#TODO
+				e.printStackTrace();
+			}
 		}
 	});
 	

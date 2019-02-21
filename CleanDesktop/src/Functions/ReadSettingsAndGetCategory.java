@@ -3,12 +3,9 @@ package Functions;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
-
 import GUI.SettingsFrame;
 
-public class GetCategoryAndProperty {
+public class ReadSettingsAndGetCategory {
 		
 	public byte selectCategory(String filename) {
 		String file = filename.substring(0,filename.length());
@@ -48,10 +45,11 @@ public class GetCategoryAndProperty {
 	        		return line.substring(line.indexOf("=")+1, line.length());
 	           }
 	        }
-               br.close();
+	       br.close();
 		} catch (IOException e) {
 			//generateErrorlog.WriteInErrorLog(1, getClass().getName());
 		}
+		
 		return null;
 	}
 	

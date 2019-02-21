@@ -1,22 +1,16 @@
 package Functions;
 
 import java.awt.Desktop;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import javax.swing.JFileChooser;
 
-public class FileWhitelist {
+public class Whitelist {
 	String username = System.getProperty("user.name");
 	LocalDateTime now = LocalDateTime.now();
 	static String thisLine = null;
-	static GetCategoryAndProperty gcap = new GetCategoryAndProperty();
+	static ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	static ReadAndSaveFileContent readandsave = new ReadAndSaveFileContent();
 	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
 	static File whitelist = new File(gcap.getSetup("path")+"/Whitelist.html");
