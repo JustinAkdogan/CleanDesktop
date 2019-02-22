@@ -8,6 +8,10 @@ public class ChooseDestinationFolder {
 		JFileChooser chooseFolder = new JFileChooser();
 		chooseFolder.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		chooseFolder.showSaveDialog(null);
-		return(""+chooseFolder.getSelectedFile());
+		if (chooseFolder.getSelectedFile() != null) {
+			return(chooseFolder.getSelectedFile().toString());
+		}
+		return null;
 	}	
+		
 }

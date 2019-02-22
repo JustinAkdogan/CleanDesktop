@@ -3,9 +3,10 @@ package Functions;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import GUI.SettingsFrame;
 
 public class ReadSettingsAndGetCategory {
+	
+	Messages messages = new Messages();
 		
 	public byte selectCategory(String filename) {
 		String file = filename.substring(0,filename.length());
@@ -16,7 +17,7 @@ public class ReadSettingsAndGetCategory {
 		if (extension != null) {
 			extension = extension.toLowerCase();
 			if (extension.contains(".png") || extension.contains(".jpg") || extension.contains(".gif") || extension.contains(".bmp") ||
-				extension.contains(".tiff") || extension.contains(".swf") || extension.contains(".svg")) {
+				extension.contains(".tiff") || extension.contains(".swf") || extension.contains(".svg") || extension.contains(".ico") ) {
 				return 1;
 			}else if (extension.contains(".wav") || extension.contains(".mp3") || extension.contains(".wma") || extension.contains(".aac") ||
 					extension.contains(".ogg") || extension.contains(".flac") || extension.contains(".rm")) {
@@ -34,8 +35,8 @@ public class ReadSettingsAndGetCategory {
 	}
 	
 	public String getSetup(String Settingline) {
-		SettingsFrame settings = new SettingsFrame();
-		String programPath = settings.getProgramPath();
+		//SettingsFrame settings = new SettingsFrame();
+		String programPath = "C:\\CleanDesktop"; //settings.getProgramPath();
         BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader(programPath+"\\Settings.ini"));
@@ -47,15 +48,15 @@ public class ReadSettingsAndGetCategory {
 	        }
 	       br.close();
 		} catch (IOException e) {
-			//generateErrorlog.WriteInErrorLog(1, getClass().getName());
+			messages.errorMessages((byte) 1, null);
 		}
 		
 		return null;
 	}
 	
 	public String getProperty(String Settingline) {
-		SettingsFrame settings = new SettingsFrame();
-		String programPath = settings.getProgramPath();
+		//SettingsFrame settings = new SettingsFrame();
+		String programPath = "C:\\CleanDesktop"; //settings.getProgramPath();
         BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader(programPath+"\\Settings.ini"));
@@ -67,7 +68,7 @@ public class ReadSettingsAndGetCategory {
 	        }
                br.close();
 		} catch (IOException e) {
-			//generateErrorlog.WriteInErrorLog(1, getClass().getName());
+			messages.errorMessages((byte) 1, null);
 		}
 		return null;
 	}

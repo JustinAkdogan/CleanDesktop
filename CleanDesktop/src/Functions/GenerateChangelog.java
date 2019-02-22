@@ -9,7 +9,7 @@ import java.io.IOException;
 public class GenerateChangelog {
 	
 	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
-	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
+	Messages messages = new Messages();
 	
 	public GenerateChangelog(String [] htmlLogStructureMid) {
 		
@@ -21,7 +21,6 @@ public class GenerateChangelog {
 				"<title>Changelog</title>",
 				"<meta name=viewport content=\"width=device-width, initial-scale=1\">",
 				"<script src=\"http://code.jquery.com/jquery-1.10.2.min.js\"></script>",
-				"<meta charset=\"utf-8\">",
 				"<style>",
 				"html {","background: darkgrey;","font-size: 100%;","margin: 0em;","padding: 0em;","}",
 				"h1{","font-family: Calibri;","text-decoration: underline;","}",
@@ -49,7 +48,6 @@ public class GenerateChangelog {
 			}
 			
 			for (int b=0; b < htmlLogStructureMid.length; b++) {
-				System.out.println(htmlLogStructureMid[b]);
 				if (htmlLogStructureMid[b] != null) {
 					String path = null;
 					if(gcap.selectCategory(htmlLogStructureMid[b]) == 1) {path = gcap.getSetup("img_destination");}
@@ -58,6 +56,8 @@ public class GenerateChangelog {
 					if(gcap.selectCategory(htmlLogStructureMid[b]) == 4) {path = gcap.getSetup("doc_destination");}
 					if (htmlLogStructureMid[b].startsWith("del_")) {
 						writer.write("<a style='padding-left: 15%; color: orangered'>"+htmlLogStructureMid[b].substring(4, htmlLogStructureMid[b].length())+"</a><a style='color:red'> DELETED</a><br>");
+					}else if (htmlLogStructureMid[b].startsWith("rep_")) {
+						writer.write("<a style='padding-left: 1%; color: green'>"+htmlLogStructureMid[b].substring(4, htmlLogStructureMid[b].length())+"</a><a style='color:red'> REPLACED</a><br>");
 					}else {
 						writer.write("<a style='padding-left: 15%; color: orangered'>"+htmlLogStructureMid[b]+"</a><a style='color:green'> TRANSFERED TO: </a><a style='text-decoration: underline; color: blue;'>" + path + "</a><br>");
 					}
@@ -74,7 +74,7 @@ public class GenerateChangelog {
 			File htmlFile = new File(gcap.getSetup("path")+"/Logs/Changelog.html");
 			Desktop.getDesktop().browse(htmlFile.toURI());
 		} catch (IOException e) {
-			generateErrorlog.WriteInErrorLog(4, getClass().getName());
+			messages.errorMessages((byte) 3, null);
 		}		
 	}
 }

@@ -9,7 +9,7 @@ public class GenerateWhitelist {
 	
 	Whitelist whitelist = new Whitelist();
 	ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
-	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
+	Messages messages = new Messages();
 	
 	public GenerateWhitelist(String [] filenames, boolean append) {
 		
@@ -61,7 +61,7 @@ public class GenerateWhitelist {
 			
 			writer.close();
 		} catch (IOException e) {
-			generateErrorlog.WriteInErrorLog(5, getClass().getName());
+			messages.errorMessages((byte) 5, null);
 		}		
 	}
 }

@@ -17,11 +17,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Functions.Messages;
+
 public class InformationFrame extends JFrame {
 
 	JButton closeBtn, minimizeBtn;
 	JLabel title,border,programmedBy,iconsFrom;
 	JPanel jp = new JPanel();
+	Messages messages = new Messages();
 	int width = 600;
 	int height = 400;
 	private java.awt.Point initialClick;
@@ -30,11 +33,11 @@ public class InformationFrame extends JFrame {
 	
 	public InformationFrame() {
 		try{    
-		      setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
-		   }
+			setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
+		}
 		catch (Exception ex){
-			
-		   }
+			messages.errorMessages((byte) 7, null);
+		 }
 		
 		//Layout
 		setSize(width, height);

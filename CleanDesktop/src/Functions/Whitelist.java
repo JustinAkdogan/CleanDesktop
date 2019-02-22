@@ -12,7 +12,7 @@ public class Whitelist {
 	static String thisLine = null;
 	static ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
 	static ReadAndSaveFileContent readandsave = new ReadAndSaveFileContent();
-	GenerateErrorlog generateErrorlog = new GenerateErrorlog();
+	Messages messages = new Messages();
 	static File whitelist = new File(gcap.getSetup("path")+"/Whitelist.html");
 	
 	
@@ -46,7 +46,7 @@ public class Whitelist {
 		try {
 			Desktop.getDesktop().browse(whitelist.toURI());
 		} catch (IOException e) {
-			generateErrorlog.WriteInErrorLog(3, getClass().getName());
+			messages.errorMessages((byte) 3, null);
 		}
 	}
 	
@@ -58,7 +58,7 @@ public class Whitelist {
 	}
 	
 	public void deleteFilesFromWhitelist(File[] files) {
-		String [] whiteListContent = readandsave.readSaveAndGetFileContent("Whitelist.html", false);
+		String [] whiteListContent = readandsave.readSaveAndGetFileContent("Whitelist.html");
 		String [] whiteListFiles = generateStringArray(whiteListContent);
 		
 		int counter = 0;

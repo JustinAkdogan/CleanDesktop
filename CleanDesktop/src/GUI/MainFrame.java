@@ -16,29 +16,32 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import Functions.CreateWorkspace;
-import Functions.ReadSettingsAndGetCategory;
+import Functions.Messages;
 import Functions.ReadDesktop;
 
 public class MainFrame extends JFrame {
 	JButton startBtn, whiteBtn, settingsBtn, closeBtn, minimizeBtn, infoBtn;
 	JLabel title,border;
 	JPanel jp = new JPanel();
+	Messages messages = new Messages();
 	int width = 600;
 	int height = 400;
 	private java.awt.Point initialClick;
 	String systemPath = "";
+	CreateWorkspace cw = new CreateWorkspace ("C:\\CleanDesktop");
 	
 	
 	public MainFrame() {
-		
-		checkIfWorkspaceAlreadyExists();
+	
 		
 		try{    
-		       setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
-		   }
+		    setIconImage(ImageIO.read(new File("res/cd_logo.png")));   
+		}
 		catch (Exception ex){
-		   }
+			messages.errorMessages((byte) 7, null);
+		}
 		
 		
 		
@@ -135,8 +138,6 @@ public class MainFrame extends JFrame {
 				settings.setTitle("Settings");
 				settings.setResizable(false);
 				settings.setVisible(true);
-				//setVisible(false);
-				//dipose();
 			}
 		});
 		
@@ -192,17 +193,6 @@ public class MainFrame extends JFrame {
 		            setLocation(X, Y);
 		        }
 		    });
-	}
-	
-	private void checkIfWorkspaceAlreadyExists() {
-		ReadSettingsAndGetCategory gcap = new ReadSettingsAndGetCategory();
-		String systemPath = gcap.getSetup("path");
-		if (systemPath != null) {
-			CreateWorkspace cw = new CreateWorkspace(systemPath); 
-		}else {
-			systemPath = "C:\\CleanDesktop";
-			CreateWorkspace cw = new CreateWorkspace(systemPath); 
-		}
 	}
 	
 	public void cleanDesktop() {

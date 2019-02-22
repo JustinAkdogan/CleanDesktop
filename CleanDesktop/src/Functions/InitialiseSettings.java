@@ -7,6 +7,7 @@ import java.io.IOException;
 public class InitialiseSettings {
 	private String username = System.getProperty("user.name");
 	private String prepath = "C:/Users/"+username;
+	Messages messages = new Messages();
 	private String [] settingStructure = {
 	"[Destination Paths]",
 	"img_destination="+prepath+"/Pictures/CleanDesktop",
@@ -33,7 +34,7 @@ public class InitialiseSettings {
 			}
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace(); //#TODO
+			messages.errorMessages((byte) 1, null);
 		}
 	}
 	
