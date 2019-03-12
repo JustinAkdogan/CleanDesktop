@@ -445,7 +445,7 @@ public class SettingsFrame extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			changeSettings.changeSettings(delete_size_range.getText(),(byte) 8);
-			dispose();
+			System.exit(0);
 		}
 	});
 	
