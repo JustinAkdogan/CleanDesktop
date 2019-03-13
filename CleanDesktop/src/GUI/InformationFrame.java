@@ -97,7 +97,7 @@ public class InformationFrame extends JFrame {
 		{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				dispose();
 			}
 		});
 		
